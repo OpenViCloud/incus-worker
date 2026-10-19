@@ -1,0 +1,92 @@
+package vm
+
+import (
+	"context"
+	"fmt"
+	"log/slog"
+
+	"github.com/lxc/incus/v7/shared/api"
+
+	"github.com/OpenViCloud/incus-worker/controlplane"
+	"github.com/OpenViCloud/incus-worker/incus/cluster"
+	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/incus-worker/loop/command"
+)
+
+const forceStopTimeoutSeconds = 30
+
+type deletePayload struct {
+	VmId         string `json:"vmId"`
+	ExternalVmId string `json:"externalVmId"`
+	ProjectName  string `json:"projectName"`
+	ZoneId       string `json:"zoneId"`
+}
+
+// Delete runs vm.delete and reports Deleted once Incus no longer has the instance
+// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#forget-on-provider-confirm). It has no give-up callback: the VM keeps its
+// delete waiting, and a repeated delete reruns the failed command.
+type Delete struct {
+	cp    *controlplane.Client
+	zones cluster.Zones
+}
+
+func NewDelete(cp *controlplane.Client, zones cluster.Zones) *Delete {
+	return &Delete{cp: cp, zones: zones}
+}
+
+func (h *Delete) Run(ctx context.Context, leased command.Leased, logger *slog.Logger) error {
+	var payload deletePayload
+	if err := command.DecodePayload(leased, &payload); err != nil {
+		return err
+	}
+	isComplete := payload.VmId != "" && payload.ExternalVmId != "" && payload.ProjectName != ""
+	if !isComplete {
+		return command.Permanent(fmt.Errorf("vm.delete payload lacks vmId, externalVmId or projectName"))
+	}
+	zone, err := h.zones.Zone(ctx, leased.ZoneId)
+	if err != nil {
+		return err
+	}
+	if err := removeInstance(ctx, zone.Provider, payload.ProjectName, payload.ExternalVmId, logger); err != nil {
+		return err
+	}
+	return sendStatus(ctx, h.cp, payload.VmId, statusReport{Report: reportDeleted})
+}
+
+func (h *Delete) GiveUp(ctx context.Context, leased command.Leased, cause error, logger *slog.Logger) error {
+	return nil
+}
+
+// removeInstance stops then deletes; Incus refuses to delete a running instance (lab 05). A 404 at any step — the
+// instance or its whole project gone — means the delete is already done.
+func removeInstance(ctx context.Context, p provider.Provider, project string, name string, logger *slog.Logger) error {
+	instance, err := p.GetInstance(ctx, project, name)
+	if provider.IsNotFound(err) {
+		logger.Info("already gone; nothing to delete", "object", name)
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+
+	isStopped := instance.StatusCode == api.Stopped
+	if !isStopped {
+		stop := api.InstanceStatePut{Action: "stop", Force: true, Timeout: forceStopTimeoutSeconds}
+		err := p.UpdateInstanceState(ctx, project, name, stop)
+		if provider.IsNotFound(err) {
+			logger.Info("already gone; nothing to delete", "object", name)
+			return nil
+		}
+		isAlreadyStopped := provider.IsOperationFailureContaining(err, alreadyStopped)
+		if err != nil && !isAlreadyStopped {
+			return err
+		}
+	}
+
+	err = p.DeleteInstance(ctx, project, name)
+	if provider.IsNotFound(err) {
+		logger.Info("already gone; nothing to delete", "object", name)
+		return nil
+	}
+	return err
+}

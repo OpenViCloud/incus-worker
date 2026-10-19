@@ -1,0 +1,92 @@
+
+== DELETE /1.0/projects/t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 500 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 139
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":500,"error":"Only empty projects can be removed.","metadata":null}
+
+HTTP 500
+
+== DELETE /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== DELETE /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 145
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Failed loading network: Network not found","metadata":null}
+
+HTTP 404
+
+== DELETE /1.0/projects/t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== GET /1.0/projects/t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 121
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Project not found","metadata":null}
+
+HTTP 404
+
+== DELETE /1.0/projects/t-0123456789abcdef0123456789abcdef  (08:01:21Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 175
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Fetch project \"t-0123456789abcdef0123456789abcdef\": Project not found","metadata":null}
+
+HTTP 404
+
+== GET /1.0/operations  (08:01:21Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 174
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"running":["/1.0/operations/4be3d9ca-3338-495a-8070-186be12d87f4"]}}
+
+HTTP 200
+
+== GET /1.0/operations?recursion=1  (08:01:21Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 428
+date: Thu, 08 Oct 2026 08:01:21 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"running":[{"id":"4be3d9ca-3338-495a-8070-186be12d87f4","class":"task","description":"Downloading image","created_at":"2026-10-08T14:29:16.483350417+07:00","updated_at":"2026-10-08T14:29:16.483350417+07:00","status":"Running","status_code":103,"resources":{},"metadata":{},"may_cancel":false,"err":"","location":"none"}]}}
+
+HTTP 200

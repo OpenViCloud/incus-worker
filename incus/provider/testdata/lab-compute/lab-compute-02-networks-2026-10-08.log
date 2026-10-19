@@ -1,0 +1,74 @@
+
+== POST /1.0/networks?project=t-0123456789abcdef0123456789abcdef  (07:29:08Z)
+-- request body: {"name":"net-11111111-2222-3333-4444-555555555555","description":"","type":"ovn","config":{"network":"ovnup","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none"}}
+-- response headers:
+HTTP/2 201 
+content-type: application/json
+location: /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef
+content-length: 110
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+HTTP 201
+
+-- network name in use: net-11111111-2222-3333-4444-555555555555
+
+== GET /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (07:29:08Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "4a10bcc32772d2c711568887cec895ad4bb57fe8e33ab1019a827d6ffa25bb44"
+content-length: 468
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"bridge.mtu":"1500","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none","network":"ovnup","volatile.network.ipv4.address":"10.200.0.102"},"description":"","name":"net-11111111-2222-3333-4444-555555555555","type":"ovn","used_by":[],"managed":true,"status":"Created","locations":["none"],"project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+== GET /1.0/networks?project=t-0123456789abcdef0123456789abcdef&recursion=1  (07:29:08Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 470
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"bridge.mtu":"1500","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none","network":"ovnup","volatile.network.ipv4.address":"10.200.0.102"},"description":"","name":"net-11111111-2222-3333-4444-555555555555","type":"ovn","used_by":[],"managed":true,"status":"Created","locations":["none"],"project":"t-0123456789abcdef0123456789abcdef"}]}
+
+HTTP 200
+
+== POST /1.0/networks?project=t-0123456789abcdef0123456789abcdef  (07:29:08Z)
+-- request body: {"name":"net-11111111-2222-3333-4444-555555555555","description":"","type":"ovn","config":{"network":"ovnup","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none"}}
+-- response headers:
+HTTP/2 409 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 171
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":409,"error":"Network \"net-11111111-2222-3333-4444-555555555555\" already exists","metadata":null}
+
+HTTP 409
+
+== GET /1.0/networks/does-not-exist?project=t-0123456789abcdef0123456789abcdef  (07:29:08Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 121
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Network not found","metadata":null}
+
+HTTP 404
+
+== GET /1.0/networks?recursion=1&all-projects=true  (07:29:08Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 3049
+date: Thu, 08 Oct 2026 07:29:08 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"bridge.mtu":"1500","ipv4.address":"10.30.0.1/24","ipv4.nat":"true","ipv6.address":"none","network":"ovnup","volatile.network.ipv4.address":"10.200.0.100"},"description":"","name":"net-a","type":"ovn","used_by":["/1.0/instances/a1?project=tenant-a","/1.0/instances/a2?project=tenant-a"],"managed":true,"status":"Created","locations":["none"],"project":"tenant-a"},{"config":{"bridge.mtu":"1500","ipv4.address":"10.31.0.1/24","ipv4.nat":"true","ipv6.address":"none","network":"ovnup","volatile.network.ipv4.address":"10.200.0.101"},"description":"","name":"net-b","type":"ovn","used_by":["/1.0/instances/b1?project=tenant-b"],"managed":true,"status":"Created","locations":["none"],"project":"tenant-b"},{"config":{"bridge.mtu":"1500","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none","network":"ovnup","volatile.network.ipv4.address":"10.200.0.102"},"description":"","name":"net-11111111-2222-3333-4444-555555555555","type":"ovn","used_by":[],"managed":true,"status":"Created","locations":["none"],"project":"t-0123456789abcdef0123456789abcdef"},{"config":{"ipv4.address":"10.200.0.1/24","ipv4.dhcp.ranges":"10.200.0.10-10.200.0.50","ipv4.nat":"true","ipv4.ovn.ranges":"10.200.0.100-10.200.0.150","ipv6.address":"none"},"description":"","name":"ovnup","type":"bridge","used_by":["/1.0/networks/net-b?project=tenant-b","/1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef","/1.0/networks/net-a?project=tenant-a"],"managed":true,"status":"Created","locations":["none"],"project":"default"},{"config":{"bridge.external_interfaces":"vrack0","ipv4.address":"none","ipv6.address":"none"},"description":"","name":"vrackbr","type":"bridge","used_by":[],"managed":true,"status":"Created","locations":["none"],"project":"default"},{"config":{},"description":"","name":"lo","type":"loopback","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"eth0","type":"physical","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"lima0","type":"physical","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"ovs-system","type":"unknown","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"br-int","type":"bridge","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"incusovn3","type":"bridge","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"incusovn3b","type":"unknown","used_by":[],"managed":false,"status":"","locations":null,"project":"default"},{"config":{},"description":"","name":"incusovn3a","type":"unknown","used_by":[],"managed":false,"status":"","locations":null,"project":"default"}]}
+
+HTTP 200

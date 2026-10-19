@@ -1,0 +1,116 @@
+
+== POST /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001/snapshots?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- request body: {"name":"s4111111111111111"}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/ff422a08-87e5-4656-9b67-7038205b46a4
+content-length: 824
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/ff422a08-87e5-4656-9b67-7038205b46a4","error_code":0,"error":"","metadata":{"id":"ff422a08-87e5-4656-9b67-7038205b46a4","class":"task","description":"Creating storage volume snapshot","created_at":"2026-10-08T21:43:42.020265833+07:00","updated_at":"2026-10-08T21:43:42.020265833+07:00","status":"Running","status_code":103,"resources":{"storage_volume_snapshots":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001/snapshots/s4111111111111111?project=t-0123456789abcdef0123456789abcdef"],"storage_volumes":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/ff422a08-87e5-4656-9b67-7038205b46a4  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 761
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ff422a08-87e5-4656-9b67-7038205b46a4","class":"task","description":"Creating storage volume snapshot","created_at":"2026-10-08T21:43:42.020265833+07:00","updated_at":"2026-10-08T21:43:42.020265833+07:00","status":"Running","status_code":103,"resources":{"storage_volume_snapshots":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001/snapshots/s4111111111111111?project=t-0123456789abcdef0123456789abcdef"],"storage_volumes":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/ff422a08-87e5-4656-9b67-7038205b46a4/wait?timeout=600  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ff422a08-87e5-4656-9b67-7038205b46a4","class":"task","description":"Creating storage volume snapshot","created_at":"2026-10-08T21:43:42.020265833+07:00","updated_at":"2026-10-08T21:43:42.020265833+07:00","status":"Success","status_code":200,"resources":{"storage_volume_snapshots":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001/snapshots/s4111111111111111?project=t-0123456789abcdef0123456789abcdef"],"storage_volumes":["/1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== DELETE /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001/snapshots/s4111111111111111?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 133
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Storage pool volume not found","metadata":null}
+
+HTTP 404
+
+-- delete the volume again
+
+== DELETE /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 133
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Storage pool volume not found","metadata":null}
+
+HTTP 404
+
+== DELETE /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000002?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== DELETE /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== DELETE /1.0/projects/t-0123456789abcdef0123456789abcdef  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes?recursion=1&all-projects=true  (14:43:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 1741
+date: Thu, 08 Oct 2026 14:43:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a1","type":"container","used_by":["/1.0/instances/a1?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:43.016038739Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a2","type":"container","used_by":["/1.0/instances/a2?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:44.270960884Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"b1","type":"container","used_by":["/1.0/instances/b1?project=tenant-b"],"location":"none","content_type":"filesystem","project":"tenant-b","created_at":"2026-10-07T04:09:18.289606821Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard","volatile.rootfs.size":"4294967296"},"description":"","name":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","type":"image","used_by":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"],"location":"none","content_type":"block","project":"default","created_at":"2026-10-07T01:50:54.026272537Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf","type":"image","used_by":["/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf"],"location":"none","content_type":"filesystem","project":"default","created_at":"2026-10-07T01:52:39.071269815Z"}]}
+
+HTTP 200

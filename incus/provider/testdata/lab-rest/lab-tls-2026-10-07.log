@@ -1,0 +1,16 @@
+Warning: the “<key> <value>” syntax is deprecated; please switch to the “<key>=<value>” syntax
+== untrusted (no client cert)
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{},"api_extensions":null,"api_status":"stable","api_version":"1.0","auth":"untrusted","public":false,"auth_methods":["tls"]}}
+
+== trusted (client cert)
+auth= trusted auth_methods= ['tls'] server_name= lima-incus-lab server_clustered= False
+== server certificate fingerprint (sha256 of DER)
+56f4e54b8098c58ce8809ac9f13feef087a4f4374c79803203e4fdca20c78277  -
+== environment.certificate_fingerprint
+56f4e54b8098c58ce8809ac9f13feef087a4f4374c79803203e4fdca20c78277
+== cluster (trusted)
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"server_name":"","enabled":false,"member_config":[{"entity":"network","name":"vrackbr","key":"bridge.external_interfaces","value":"","description":"\"bridge.external_interfaces\" property for network \"vrackbr\""},{"entity":"storage-pool","name":"default","key":"lvm.thinpool_name","value":"","description":"\"lvm.thinpool_name\" property for storage pool \"default\""},{"entity":"storage-pool","name":"default","key":"lvm.vg_name","value":"","description":"\"lvm.vg_name\" property for storage pool \"default\""},{"entity":"storage-pool","name":"default","key":"size","value":"","description":"\"size\" property for storage pool \"default\""},{"entity":"storage-pool","name":"default","key":"source","value":"","description":"\"source\" property for storage pool \"default\""}]}}
+
+== cluster members (trusted)
+{"type":"error","status":"","status_code":0,"operation":"","error_code":500,"error":"Server is not clustered","metadata":null}
+

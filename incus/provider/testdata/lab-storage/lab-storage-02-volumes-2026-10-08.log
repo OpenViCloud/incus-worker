@@ -1,0 +1,100 @@
+
+== POST /1.0/storage-pools/default/volumes?project=t-0123456789abcdef0123456789abcdef  (14:36:53Z)
+-- request body: {"name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","content_type":"block","description":"","config":{"size":"1GiB","user.titan-name":"data-1"}}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:36:54 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+-- duplicate POST after the volume exists
+
+== POST /1.0/storage-pools/default/volumes?project=t-0123456789abcdef0123456789abcdef  (14:36:54Z)
+-- request body: {"name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","content_type":"block","description":"","config":{"size":"1GiB","user.titan-name":"data-1"}}
+-- response headers:
+HTTP/2 409 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 138
+date: Thu, 08 Oct 2026 14:36:54 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":409,"error":"Volume by that name already exists","metadata":null}
+
+HTTP 409
+
+== GET /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:36:54Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "f6f452b40ab5d1bc1ca67a08534250dc7139e0e5e9a20397158c80be715aa7db"
+content-length: 389
+date: Thu, 08 Oct 2026 14:36:54 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"size":"1GiB","user.titan-name":"data-1"},"description":"","name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","used_by":[],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:53.891124935Z"}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes?project=t-0123456789abcdef0123456789abcdef&recursion=1  (14:36:54Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 1676
+date: Thu, 08 Oct 2026 14:36:54 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"size":"1GiB","user.titan-name":"data-1"},"description":"","name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","used_by":[],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:53.891124935Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard","volatile.rootfs.size":"4294967296"},"description":"","name":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","type":"image","used_by":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"default","created_at":"2026-10-07T01:50:54.026272537Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf","type":"image","used_by":["/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"filesystem","project":"default","created_at":"2026-10-07T01:52:39.071269815Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"vm-11111111-2222-3333-4444-555555555555","type":"virtual-machine","used_by":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:39.478254086Z"}]}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes?recursion=1&all-projects=true  (14:36:54Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 2433
+date: Thu, 08 Oct 2026 14:36:55 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a1","type":"container","used_by":["/1.0/instances/a1?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:43.016038739Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a2","type":"container","used_by":["/1.0/instances/a2?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:44.270960884Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"b1","type":"container","used_by":["/1.0/instances/b1?project=tenant-b"],"location":"none","content_type":"filesystem","project":"tenant-b","created_at":"2026-10-07T04:09:18.289606821Z"},{"config":{"size":"1GiB","user.titan-name":"data-1"},"description":"","name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","used_by":[],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:53.891124935Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard","volatile.rootfs.size":"4294967296"},"description":"","name":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","type":"image","used_by":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"],"location":"none","content_type":"block","project":"default","created_at":"2026-10-07T01:50:54.026272537Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf","type":"image","used_by":["/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf"],"location":"none","content_type":"filesystem","project":"default","created_at":"2026-10-07T01:52:39.071269815Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"vm-11111111-2222-3333-4444-555555555555","type":"virtual-machine","used_by":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:39.478254086Z"}]}
+
+HTTP 200
+
+== GET /1.0/storage-volumes?recursion=1&all-projects=true  (14:36:55Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 113
+date: Thu, 08 Oct 2026 14:36:55 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"not found","metadata":null}
+
+HTTP 404
+
+== GET /1.0/storage-pools/default/volumes/custom/vol-does-not-exist?project=t-0123456789abcdef0123456789abcdef  (14:36:55Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 133
+date: Thu, 08 Oct 2026 14:36:55 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Storage pool volume not found","metadata":null}
+
+HTTP 404
+
+-- POST into a project that does not exist
+
+== POST /1.0/storage-pools/default/volumes?project=t-ffffffffffffffffffffffffffffffff  (14:36:55Z)
+-- request body: {"name":"vol-aaaaaaaa-0000-0000-0000-00000000ffff","type":"custom","content_type":"block","description":"","config":{"size":"1GiB","user.titan-name":"x"}}
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 184
+date: Thu, 08 Oct 2026 14:36:55 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Failed to load project \"t-ffffffffffffffffffffffffffffffff\": Project not found","metadata":null}
+
+HTTP 404

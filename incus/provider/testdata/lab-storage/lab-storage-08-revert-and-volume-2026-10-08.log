@@ -1,0 +1,446 @@
+
+== POST /1.0/projects  (16:24:59Z)
+-- request body: {"name":"t-0123456789abcdef0123456789abcdef","description":"","config":{"features.images":"false","features.networks":"true","features.profiles":"true","features.storage.buckets":"true","features.storage.volumes":"true"}}
+-- response headers:
+HTTP/2 201 
+content-type: application/json
+location: /1.0/projects/t-0123456789abcdef0123456789abcdef
+content-length: 110
+date: Thu, 08 Oct 2026 16:24:59 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+HTTP 201
+
+== POST /1.0/networks?project=t-0123456789abcdef0123456789abcdef  (16:24:59Z)
+-- request body: {"name":"net-11111111-2222-3333-4444-555555555555","description":"","type":"ovn","config":{"network":"ovnup","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none"}}
+-- response headers:
+HTTP/2 201 
+content-type: application/json
+location: /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef
+content-length: 110
+date: Thu, 08 Oct 2026 16:24:59 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+HTTP 201
+
+== POST /1.0/instances?project=t-0123456789abcdef0123456789abcdef  (16:24:59Z)
+-- request body: {"name":"vmceircejceiztgrcekvkvkvkvku","type":"virtual-machine","source":{"type":"image","alias":"alma-9"},"config":{"limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8"},"devices":{"eth0":{"type":"nic","network":"net-11111111-2222-3333-4444-555555555555"},"root":{"type":"disk","pool":"default","path":"/","size":"10GiB"}},"start":true}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/a7b8933b-42f3-487b-a3b1-be01a7115b39
+content-length: 577
+date: Thu, 08 Oct 2026 16:24:59 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/a7b8933b-42f3-487b-a3b1-be01a7115b39","error_code":0,"error":"","metadata":{"id":"a7b8933b-42f3-487b-a3b1-be01a7115b39","class":"task","description":"Creating instance","created_at":"2026-10-08T23:24:59.31514001+07:00","updated_at":"2026-10-08T23:24:59.31514001+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/a7b8933b-42f3-487b-a3b1-be01a7115b39  (16:24:59Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 514
+date: Thu, 08 Oct 2026 16:24:59 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"a7b8933b-42f3-487b-a3b1-be01a7115b39","class":"task","description":"Creating instance","created_at":"2026-10-08T23:24:59.31514001+07:00","updated_at":"2026-10-08T23:24:59.31514001+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/a7b8933b-42f3-487b-a3b1-be01a7115b39/wait?timeout=600  (16:24:59Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:24:59 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"a7b8933b-42f3-487b-a3b1-be01a7115b39","class":"task","description":"Creating instance","created_at":"2026-10-08T23:24:59.31514001+07:00","updated_at":"2026-10-08T23:24:59.31514001+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== POST /1.0/storage-pools/default/volumes?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- request body: {"name":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"custom","content_type":"block","description":"","config":{"size":"1GiB","user.titan-name":"data-8"}}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+-- snapshot A: no volume attached (s<26> on vm<26>)
+
+== POST /1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- request body: {"name":"sliaaaaaaaaaaaaaaaaaaaaaabi","stateful":false}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/f8dbef61-ae9b-4432-a813-986d416f0297
+content-length: 734
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/f8dbef61-ae9b-4432-a813-986d416f0297","error_code":0,"error":"","metadata":{"id":"f8dbef61-ae9b-4432-a813-986d416f0297","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.219565971+07:00","updated_at":"2026-10-08T23:25:01.219565971+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/sliaaaaaaaaaaaaaaaaaaaaaabi?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/f8dbef61-ae9b-4432-a813-986d416f0297  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 671
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"f8dbef61-ae9b-4432-a813-986d416f0297","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.219565971+07:00","updated_at":"2026-10-08T23:25:01.219565971+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/sliaaaaaaaaaaaaaaaaaaaaaabi?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/f8dbef61-ae9b-4432-a813-986d416f0297/wait?timeout=600  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"f8dbef61-ae9b-4432-a813-986d416f0297","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.219565971+07:00","updated_at":"2026-10-08T23:25:01.219565971+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/sliaaaaaaaaaaaaaaaaaaaaaabi?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== PATCH /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- request body: {"devices":{"volvkvkvkqaaaaaaaaaaaaaaaaaba":{"type":"disk","pool":"default","source":"volvkvkvkqaaaaaaaaaaaaaaaaaba"}}}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+-- snapshot B: volume attached
+
+== POST /1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- request body: {"name":"slmaaaaaaaaaaaaaaaaaaaaaabm","stateful":false}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/f52f98ba-fdf8-427f-b34a-a41341273a98
+content-length: 734
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/f52f98ba-fdf8-427f-b34a-a41341273a98","error_code":0,"error":"","metadata":{"id":"f52f98ba-fdf8-427f-b34a-a41341273a98","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.696625075+07:00","updated_at":"2026-10-08T23:25:01.696625075+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/slmaaaaaaaaaaaaaaaaaaaaaabm?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/f52f98ba-fdf8-427f-b34a-a41341273a98  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 671
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"f52f98ba-fdf8-427f-b34a-a41341273a98","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.696625075+07:00","updated_at":"2026-10-08T23:25:01.696625075+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/slmaaaaaaaaaaaaaaaaaaaaaabm?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/f52f98ba-fdf8-427f-b34a-a41341273a98/wait?timeout=600  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"f52f98ba-fdf8-427f-b34a-a41341273a98","class":"task","description":"Snapshotting instance","created_at":"2026-10-08T23:25:01.696625075+07:00","updated_at":"2026-10-08T23:25:01.696625075+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"instances_snapshots":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/slmaaaaaaaaaaaaaaaaaaaaaabm?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes/custom/volvkvkvkqaaaaaaaaaaaaaaaaaba?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "0357eb64141680e73bcf444a98d945698f463aec79ee83a04c1438bc391b5a9b"
+content-length: 466
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"size":"1GiB","user.titan-name":"data-8"},"description":"","name":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"custom","used_by":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T16:25:01.030728026Z"}}
+
+HTTP 200
+
+-- used_by with snapshot B taken while attached: ['/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef']
+
+== GET /1.0/instances/vmceircejceiztgrcekvkvkvkvku/snapshots/slmaaaaaaaaaaaaaaaaaaaaaabm?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "2c86054b814faf5dfb954f32dfdc8a32e8e36dce3d9b1c93ed3e2f204f13a1f2"
+content-length: 2727
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"expires_at":"0001-01-01T00:00:00Z","architecture":"aarch64","config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tap56e92eff","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"created_at":"2026-10-08T16:25:01.69864469Z","description":"","devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"volvkvkvkqaaaaaaaaaaaaaaaaaba":{"pool":"default","source":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"disk"}},"ephemeral":false,"expanded_config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tap56e92eff","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"volvkvkvkqaaaaaaaaaaaaaaaaaba":{"pool":"default","source":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"disk"}},"last_used_at":"0001-01-01T00:00:00Z","name":"slmaaaaaaaaaaaaaaaaaaaaaabm","profiles":["default"],"stateful":false,"size":-1}}
+
+HTTP 200
+
+-- snapshot B devices: ['eth0', 'root', 'volvkvkvkqaaaaaaaaaaaaaaaaaba']
+
+-- restore A disk_only while Running, volume attached
+
+== PUT /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:01Z)
+-- request body: {"restore":"sliaaaaaaaaaaaaaaaaaaaaaabi","disk_only":true}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/db086f86-01a3-4d13-98ba-fcf355378c15
+content-length: 578
+date: Thu, 08 Oct 2026 16:25:01 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/db086f86-01a3-4d13-98ba-fcf355378c15","error_code":0,"error":"","metadata":{"id":"db086f86-01a3-4d13-98ba-fcf355378c15","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:01.98832479+07:00","updated_at":"2026-10-08T23:25:01.98832479+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/db086f86-01a3-4d13-98ba-fcf355378c15  (16:25:02Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 515
+date: Thu, 08 Oct 2026 16:25:02 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"db086f86-01a3-4d13-98ba-fcf355378c15","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:01.98832479+07:00","updated_at":"2026-10-08T23:25:01.98832479+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/db086f86-01a3-4d13-98ba-fcf355378c15/wait?timeout=600  (16:25:02Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:02 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"db086f86-01a3-4d13-98ba-fcf355378c15","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:01.98832479+07:00","updated_at":"2026-10-08T23:25:01.98832479+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "41f393f77c0c71bc4459059759da3fc89ec98ce0fe4a9bb3b5dc2ab32549fb07"
+content-length: 2754
+date: Thu, 08 Oct 2026 16:25:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tapd7cc8ecb","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"9dcfc298-f51f-4b23-98d7-a5025d347e4b","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"volvkvkvkqaaaaaaaaaaaaaaaaaba":{"pool":"default","source":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T16:24:59.318016514Z","expanded_config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tapd7cc8ecb","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"9dcfc298-f51f-4b23-98d7-a5025d347e4b","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"volvkvkvkqaaaaaaaaaaaaaaaaaba":{"pool":"default","source":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"disk"}},"name":"vmceircejceiztgrcekvkvkvkvku","status":"Running","status_code":103,"last_used_at":"2026-10-08T16:25:14.078832225Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+-- devices after disk_only restore of A: ['eth0', 'root', 'volvkvkvkqaaaaaaaaaaaaaaaaaba']; status Running
+
+== GET /1.0/storage-pools/default/volumes/custom/volvkvkvkqaaaaaaaaaaaaaaaaaba?project=t-0123456789abcdef0123456789abcdef  (16:25:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "0357eb64141680e73bcf444a98d945698f463aec79ee83a04c1438bc391b5a9b"
+content-length: 466
+date: Thu, 08 Oct 2026 16:25:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"size":"1GiB","user.titan-name":"data-8"},"description":"","name":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"custom","used_by":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T16:25:01.030728026Z"}}
+
+HTTP 200
+
+-- used_by after disk_only restore: ['/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef']
+
+-- restore A full while Running, volume attached
+
+== PUT /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:14Z)
+-- request body: {"restore":"sliaaaaaaaaaaaaaaaaaaaaaabi"}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/62abddf5-14ec-40e4-ae32-aaf52159c46f
+content-length: 580
+date: Thu, 08 Oct 2026 16:25:14 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/62abddf5-14ec-40e4-ae32-aaf52159c46f","error_code":0,"error":"","metadata":{"id":"62abddf5-14ec-40e4-ae32-aaf52159c46f","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:14.158167369+07:00","updated_at":"2026-10-08T23:25:14.158167369+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/62abddf5-14ec-40e4-ae32-aaf52159c46f  (16:25:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 517
+date: Thu, 08 Oct 2026 16:25:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"62abddf5-14ec-40e4-ae32-aaf52159c46f","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:14.158167369+07:00","updated_at":"2026-10-08T23:25:14.158167369+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/62abddf5-14ec-40e4-ae32-aaf52159c46f/wait?timeout=600  (16:25:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"62abddf5-14ec-40e4-ae32-aaf52159c46f","class":"task","description":"Restoring snapshot","created_at":"2026-10-08T23:25:14.158167369+07:00","updated_at":"2026-10-08T23:25:14.158167369+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "2e8c6079c076b774c7396679a749195dc5b0b938f4c0c90faf23019fd09b783d"
+content-length: 2541
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tap002c15fc","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"369e82dc-2a03-4420-850c-0545e3b80908","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T16:24:59.318016514Z","expanded_config":{"image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","user.titan-name":"lab-8","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"40504a1f-b8bb-4807-b451-1fa76eae849f","volatile.eth0.host_name":"tap002c15fc","volatile.eth0.hwaddr":"10:66:6a:ce:3c:57","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.uuid":"844685b4-f1b1-4f92-9ffe-89d59d96f4a1","volatile.uuid.generation":"369e82dc-2a03-4420-850c-0545e3b80908","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"1804330997"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"name":"vmceircejceiztgrcekvkvkvkvku","status":"Running","status_code":103,"last_used_at":"2026-10-08T16:25:26.03957644Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+-- devices after full restore of A: ['eth0', 'root']; status Running
+
+== GET /1.0/storage-pools/default/volumes/custom/volvkvkvkqaaaaaaaaaaaaaaaaaba?project=t-0123456789abcdef0123456789abcdef  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "0357eb64141680e73bcf444a98d945698f463aec79ee83a04c1438bc391b5a9b"
+content-length: 378
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"size":"1GiB","user.titan-name":"data-8"},"description":"","name":"volvkvkvkqaaaaaaaaaaaaaaaaaba","type":"custom","used_by":[],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T16:25:01.030728026Z"}}
+
+HTTP 200
+
+-- used_by after full restore: []
+
+-- delete the volume while snapshot B still names it
+
+== DELETE /1.0/storage-pools/default/volumes/custom/volvkvkvkqaaaaaaaaaaaaaaaaaba?project=t-0123456789abcdef0123456789abcdef  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+-- cleanup
+
+== PUT /1.0/instances/vmceircejceiztgrcekvkvkvkvku/state?project=t-0123456789abcdef0123456789abcdef  (16:25:26Z)
+-- request body: {"action":"stop","force":true,"timeout":30}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/ce4e7a40-721a-465f-b3fd-70e23e0af002
+content-length: 579
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/ce4e7a40-721a-465f-b3fd-70e23e0af002","error_code":0,"error":"","metadata":{"id":"ce4e7a40-721a-465f-b3fd-70e23e0af002","class":"task","description":"Stopping instance","created_at":"2026-10-08T23:25:26.239209573+07:00","updated_at":"2026-10-08T23:25:26.239209573+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/ce4e7a40-721a-465f-b3fd-70e23e0af002  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 516
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ce4e7a40-721a-465f-b3fd-70e23e0af002","class":"task","description":"Stopping instance","created_at":"2026-10-08T23:25:26.239209573+07:00","updated_at":"2026-10-08T23:25:26.239209573+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/ce4e7a40-721a-465f-b3fd-70e23e0af002/wait?timeout=600  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ce4e7a40-721a-465f-b3fd-70e23e0af002","class":"task","description":"Stopping instance","created_at":"2026-10-08T23:25:26.239209573+07:00","updated_at":"2026-10-08T23:25:26.239209573+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== DELETE /1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef  (16:25:26Z)
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/0d283611-65ab-4457-950b-16b058e4fd34
+content-length: 579
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/0d283611-65ab-4457-950b-16b058e4fd34","error_code":0,"error":"","metadata":{"id":"0d283611-65ab-4457-950b-16b058e4fd34","class":"task","description":"Deleting instance","created_at":"2026-10-08T23:25:26.754533413+07:00","updated_at":"2026-10-08T23:25:26.754533413+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/0d283611-65ab-4457-950b-16b058e4fd34  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 516
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"0d283611-65ab-4457-950b-16b058e4fd34","class":"task","description":"Deleting instance","created_at":"2026-10-08T23:25:26.754533413+07:00","updated_at":"2026-10-08T23:25:26.754533413+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/0d283611-65ab-4457-950b-16b058e4fd34/wait?timeout=600  (16:25:26Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 16:25:26 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"0d283611-65ab-4457-950b-16b058e4fd34","class":"task","description":"Deleting instance","created_at":"2026-10-08T23:25:26.754533413+07:00","updated_at":"2026-10-08T23:25:26.754533413+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vmceircejceiztgrcekvkvkvkvku?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== DELETE /1.0/storage-pools/default/volumes/custom/volvkvkvkqaaaaaaaaaaaaaaaaaba?project=t-0123456789abcdef0123456789abcdef  (16:25:27Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 133
+date: Thu, 08 Oct 2026 16:25:27 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Storage pool volume not found","metadata":null}
+
+HTTP 404
+
+== DELETE /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (16:25:27Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 16:25:27 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== DELETE /1.0/projects/t-0123456789abcdef0123456789abcdef  (16:25:27Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 16:25:27 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes?recursion=1&all-projects=true  (16:25:27Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 1741
+date: Thu, 08 Oct 2026 16:25:27 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a1","type":"container","used_by":["/1.0/instances/a1?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:43.016038739Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a2","type":"container","used_by":["/1.0/instances/a2?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:44.270960884Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"b1","type":"container","used_by":["/1.0/instances/b1?project=tenant-b"],"location":"none","content_type":"filesystem","project":"tenant-b","created_at":"2026-10-07T04:09:18.289606821Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard","volatile.rootfs.size":"4294967296"},"description":"","name":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","type":"image","used_by":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"],"location":"none","content_type":"block","project":"default","created_at":"2026-10-07T01:50:54.026272537Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf","type":"image","used_by":["/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf"],"location":"none","content_type":"filesystem","project":"default","created_at":"2026-10-07T01:52:39.071269815Z"}]}
+
+HTTP 200

@@ -1,0 +1,21 @@
+
+== GET /1.0/operations/4be3d9ca-3338-495a-8070-186be12d87f4  (07:59:30Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 414
+date: Thu, 08 Oct 2026 07:59:30 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"4be3d9ca-3338-495a-8070-186be12d87f4","class":"task","description":"Downloading image","created_at":"2026-10-08T14:29:16.483350417+07:00","updated_at":"2026-10-08T14:29:16.483350417+07:00","status":"Running","status_code":103,"resources":{},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+-- download dir sizes (host side)
+469M	/var/lib/incus/images
+-rw-r--r--  1 root root      1188 Oct  7 08:50 b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b
+-rw-r--r--  1 root root 353602560 Oct  7 08:50 b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b.rootfs
+-rw-r--r--  1 root root       684 Oct  7 08:52 e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf
+-rw-r--r--  1 root root 137986048 Oct  7 08:52 e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf.rootfs
+drwx------  2 root root      4096 Oct  8 14:29 incus_build_3187006242
+-- simplestreams reachability
+HTTP 200 time 0.975649s

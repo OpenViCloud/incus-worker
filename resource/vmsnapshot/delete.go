@@ -1,0 +1,51 @@
+package vmsnapshot
+
+import (
+	"context"
+	"log/slog"
+
+	"github.com/OpenViCloud/incus-worker/controlplane"
+	"github.com/OpenViCloud/incus-worker/incus/cluster"
+	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/incus-worker/loop/command"
+)
+
+// Delete runs vm-snapshot.delete and reports Deleted; giving up reports the request failed, which gives the snapshot back
+// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#abandoned-request).
+type Delete struct {
+	cp    *controlplane.Client
+	zones cluster.Zones
+}
+
+func NewDelete(cp *controlplane.Client, zones cluster.Zones) *Delete {
+	return &Delete{cp: cp, zones: zones}
+}
+
+func (h *Delete) Run(ctx context.Context, leased command.Leased, logger *slog.Logger) error {
+	payload, instance, snapshot, err := decodeSnapshot(leased)
+	if err != nil {
+		return err
+	}
+	zone, err := h.zones.Zone(ctx, leased.ZoneId)
+	if err != nil {
+		return err
+	}
+	err = zone.Provider.DeleteInstanceSnapshot(ctx, payload.ProjectName, instance, snapshot)
+	// 404: an earlier run deleted it, or its VM is gone and took it along (lab-storage 05, 06).
+	isAlreadyGone := provider.IsNotFound(err)
+	if err != nil && !isAlreadyGone {
+		return err
+	}
+	if isAlreadyGone {
+		logger.Info("already gone; nothing to delete", "object", provider.SnapshotId(instance, snapshot))
+	}
+	return sendStatus(ctx, h.cp, payload.VmId, payload.SnapshotId, statusReport{Report: reportDeleted})
+}
+
+func (h *Delete) GiveUp(ctx context.Context, leased command.Leased, cause error, logger *slog.Logger) error {
+	var payload snapshotPayload
+	if err := command.DecodePayload(leased, &payload); err != nil {
+		return err
+	}
+	return sendStatus(ctx, h.cp, payload.VmId, payload.SnapshotId, requestFailed(reasonDeleteFailed, cause))
+}

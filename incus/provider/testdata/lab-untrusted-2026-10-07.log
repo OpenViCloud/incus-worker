@@ -1,0 +1,28 @@
+== untrusted GET /1.0/images
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[]}
+
+HTTP 200
+== untrusted GET /1.0/cluster
+{"type":"error","status":"","status_code":0,"operation":"","error_code":403,"error":"not authorized","metadata":null}
+
+HTTP 403
+== untrusted GET /1.0/projects
+{"type":"error","status":"","status_code":0,"operation":"","error_code":403,"error":"not authorized","metadata":null}
+
+HTTP 403
+== untrusted GET /1.0/nope
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"not found","metadata":null}
+
+HTTP 404
+== trusted GET /1.0/nope
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"not found","metadata":null}
+
+HTTP 404
+== trusted GET /1.0/images (no recursion)
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf"]}
+
+HTTP 200
+== trusted GET /1.0/cluster/members
+{"type":"error","status":"","status_code":0,"operation":"","error_code":500,"error":"Server is not clustered","metadata":null}
+
+HTTP 500

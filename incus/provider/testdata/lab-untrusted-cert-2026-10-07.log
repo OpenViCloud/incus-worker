@@ -1,0 +1,28 @@
+== stranger-cert GET /1.0
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{},"api_extensions":null,"api_status":"stable","api_version":"1.0","auth":"untrusted","public":false,"auth_methods":["tls"]}}
+
+HTTP 200
+== stranger-cert GET /1.0/cluster
+{"type":"error","status":"","status_code":0,"operation":"","error_code":403,"error":"not authorized","metadata":null}
+
+HTTP 403
+== stranger-cert GET /1.0/cluster/members
+{"type":"error","status":"","status_code":0,"operation":"","error_code":403,"error":"not authorized","metadata":null}
+
+HTTP 403
+== stranger-cert GET /1.0/images
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[]}
+
+HTTP 200
+== stranger-cert GET /1.0/images?recursion=1
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[]}
+
+HTTP 200
+== stranger-cert GET /1.0/nope
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"not found","metadata":null}
+
+HTTP 404
+== no-cert GET /1.0/cluster/members
+{"type":"error","status":"","status_code":0,"operation":"","error_code":403,"error":"not authorized","metadata":null}
+
+HTTP 403

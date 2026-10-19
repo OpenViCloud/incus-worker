@@ -1,0 +1,61 @@
+name: CI
+
+# Build, vet, unit tests, the copy of the control plane's command kinds matching the titan commit it names
+# (contract/SOURCE, synced by scripts/sync-kinds.sh), and the image build without pushing it.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          # github.com/lxc/incus/v7 needs >= 1.25.11.
+          go-version: '1.26'
+
+      - name: Kinds copy matches contract/SOURCE
+        run: |
+          sha=$(cat contract/SOURCE)
+          curl -fsSL "https://raw.githubusercontent.com/OpenViCloud/titan/$sha/control-plane/Titan.Domain/Aggregates/Platform/ProviderCommand/ProviderCommandKinds.cs" \
+            | diff - contract/ProviderCommandKinds.cs
+
+      - name: Format
+        run: test -z "$(gofmt -l .)"
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Build
+        run: go build ./...
+
+      - name: Test
+        run: go test ./... -count=1
+
+  image:
+    name: Image build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build (not pushed)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/arm64
+          push: false

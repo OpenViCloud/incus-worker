@@ -1,0 +1,42 @@
+{
+	"enabled": false,
+	"member_config": [
+		{
+			"description": "\"bridge.external_interfaces\" property for network \"vrackbr\"",
+			"entity": "network",
+			"key": "bridge.external_interfaces",
+			"name": "vrackbr",
+			"value": ""
+		},
+		{
+			"description": "\"lvm.thinpool_name\" property for storage pool \"default\"",
+			"entity": "storage-pool",
+			"key": "lvm.thinpool_name",
+			"name": "default",
+			"value": ""
+		},
+		{
+			"description": "\"lvm.vg_name\" property for storage pool \"default\"",
+			"entity": "storage-pool",
+			"key": "lvm.vg_name",
+			"name": "default",
+			"value": ""
+		},
+		{
+			"description": "\"size\" property for storage pool \"default\"",
+			"entity": "storage-pool",
+			"key": "size",
+			"name": "default",
+			"value": ""
+		},
+		{
+			"description": "\"source\" property for storage pool \"default\"",
+			"entity": "storage-pool",
+			"key": "source",
+			"name": "default",
+			"value": ""
+		}
+	],
+	"server_name": ""
+}
+

@@ -1,0 +1,159 @@
+== POST /1.0/network-acls?project=spike-rest body={"name":"acl-a"}
+HTTP/1.1 201 Created
+Content-Type: application/json
+Location: /1.0/network-acls/acl-a?project=spike-rest
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 110
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+
+== POST /1.0/network-acls?project=spike-rest body={"name":"acl-a"}
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 134
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":400,"error":"The network ACL already exists","metadata":null}
+
+
+== GET /1.0/network-acls/acl-a?project=spike-rest 
+HTTP/1.1 200 OK
+Content-Type: application/json
+Etag: "587193bada09b07b7b5b73ac40537e598d15c70e14e5be28c85e5c6b42d288dc"
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 212
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"name":"acl-a","description":"","egress":[],"ingress":[],"config":{},"used_by":[],"project":"spike-rest"}}
+
+
+== PUT /1.0/network-acls/acl-a?project=spike-rest body={"description":"","ingress":[{"action":"allow","source":"10.40.0.0/24","protocol":"tcp","destination_port":"22","description":"r1","state":"enabled"}],"egress":[],"config":{}}
+HTTP/1.1 412 Precondition Failed
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 197
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":412,"error":"ETag doesn't match: 587193bada09b07b7b5b73ac40537e598d15c70e14e5be28c85e5c6b42d288dc vs stale","metadata":null}
+
+
+etag read: "587193bada09b07b7b5b73ac40537e598d15c70e14e5be28c85e5c6b42d288dc"
+== PUT /1.0/network-acls/acl-a?project=spike-rest body={"description":"","ingress":[{"action":"allow","source":"10.40.0.0/24","protocol":"tcp","destination_port":"22-25","description":"r1","state":"enabled"}],"egress":[],"config":{}}
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 108
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+
+== GET /1.0/network-acls/missing?project=spike-rest 
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 125
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Network ACL not found","metadata":null}
+
+
+== POST /1.0/networks?project=spike-rest body={"name":"net-a","type":"ovn","config":{"network":"none","ipv4.address":"10.40.0.1/24","ipv4.nat":"false","ipv6.address":"none","security.acls":"acl-a","security.acls.default.ingress.action":"allow","security.acls.default.egress.action":"allow"}}
+HTTP/1.1 201 Created
+Content-Type: application/json
+Location: /1.0/networks/net-a?project=spike-rest
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 110
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+
+== POST /1.0/networks?project=spike-rest body={"name":"net-a","type":"ovn","config":{"network":"none"}}
+HTTP/1.1 409 Conflict
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 136
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":409,"error":"Network \"net-a\" already exists","metadata":null}
+
+
+== GET /1.0/networks/net-a?project=spike-rest 
+HTTP/1.1 200 OK
+Content-Type: application/json
+Etag: "bbeb475231b2aa3ac03392c4a82fb36eaca655a7d711a0eccbe00f8432391d95"
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 479
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"bridge.mtu":"1500","ipv4.address":"10.40.0.1/24","ipv4.nat":"false","ipv6.address":"none","network":"none","security.acls":"acl-a","security.acls.default.egress.action":"allow","security.acls.default.ingress.action":"allow"},"description":"","name":"net-a","type":"ovn","used_by":[],"managed":true,"status":"Created","locations":["none"],"project":"spike-rest"}}
+
+
+== PUT /1.0/networks/net-a?project=spike-rest body={"description":"","config":{"network":"none","ipv4.address":"10.40.0.1/24"}}
+HTTP/1.1 412 Precondition Failed
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 197
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":412,"error":"ETag doesn't match: bbeb475231b2aa3ac03392c4a82fb36eaca655a7d711a0eccbe00f8432391d95 vs stale","metadata":null}
+
+
+== POST /1.0/networks?project=spike-rest body={"name":"net-b","type":"ovn","config":{"network":"none","security.acls":"acl-missing"}}
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 216
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":500,"error":"Failed generating auto config: Failed to automatically find an unused IPv4 subnet, manual configuration required","metadata":null}
+
+
+== DELETE /1.0/network-acls/acl-a?project=spike-rest 
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 139
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":500,"error":"Cannot delete an ACL that is in use","metadata":null}
+
+
+== GET /1.0/network-acls?all-projects=true&recursion=1 
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 377
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"name":"acl-a","description":"","egress":[],"ingress":[{"action":"allow","source":"10.40.0.0/24","protocol":"tcp","destination_port":"22-25","description":"r1","state":"enabled"}],"config":{},"used_by":["/1.0/networks/net-a?project=spike-rest"],"project":"spike-rest"}]}
+
+
+== DELETE /1.0/networks/net-a?project=spike-rest 
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 108
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+
+== DELETE /1.0/network-acls/acl-a?project=spike-rest 
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 108
+
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+
+== DELETE /1.0/network-acls/acl-a?project=spike-rest 
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Fri, 09 Oct 2026 13:45:36 GMT
+Content-Length: 125
+
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Network ACL not found","metadata":null}
+
+
+Project spike-rest deleted
+DONE

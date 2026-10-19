@@ -1,0 +1,85 @@
+
+== POST /1.0/images/aliases  (07:59:37Z)
+-- request body: {"name":"alma-9","description":"","target":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"}
+-- response headers:
+HTTP/2 201 
+content-type: application/json
+location: /1.0/images/aliases/alma-9
+content-length: 110
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+HTTP 201
+
+== GET /1.0/images/aliases/alma-9  (07:59:37Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "9c214624be5ce91c9356817906ad0f0f0b04b5948ace6334fbb0623f85d889c3"
+content-length: 241
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"description":"","target":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","name":"alma-9","type":"virtual-machine"}}
+
+HTTP 200
+
+== POST /1.0/images/aliases  (07:59:37Z)
+-- request body: {"name":"alma-9","description":"","target":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"}
+-- response headers:
+HTTP/2 409 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 135
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":409,"error":"Alias \"alma-9\" already exists","metadata":null}
+
+HTTP 409
+
+== GET /1.0/images/aliases/alma-9?project=t-0123456789abcdef0123456789abcdef  (07:59:37Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "9c214624be5ce91c9356817906ad0f0f0b04b5948ace6334fbb0623f85d889c3"
+content-length: 241
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"description":"","target":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","name":"alma-9","type":"virtual-machine"}}
+
+HTTP 200
+
+== GET /1.0/images/aliases?recursion=1  (07:59:37Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 243
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"description":"","target":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","name":"alma-9","type":"virtual-machine"}]}
+
+HTTP 200
+
+== GET /1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b  (07:59:37Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "ca6197c6b77ddc0c50b9b1bfeb2f815111356841b39abf0768c0b34aeb455053"
+content-length: 953
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"auto_update":true,"properties":{"architecture":"arm64","description":"Ubuntu noble arm64 (20261006_07:42)","os":"Ubuntu","release":"noble","requirements.cgroup":"v2","serial":"20261006_07:42","type":"disk-kvm.img","variant":"cloud"},"public":false,"expires_at":"1970-01-01T00:00:00Z","profiles":["default"],"aliases":[{"name":"alma-9","description":""}],"architecture":"aarch64","cached":true,"filename":"incus.tar.xz","fingerprint":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","size":353603748,"update_source":{"alias":"ubuntu/24.04/cloud","certificate":"","protocol":"simplestreams","server":"https://images.linuxcontainers.org","image_type":""},"type":"virtual-machine","created_at":"2026-10-06T00:00:00Z","last_used_at":"2026-10-07T04:13:26.498868651Z","uploaded_at":"2026-10-07T01:50:53.93284845Z","project":"default"}}
+
+HTTP 200
+
+== GET /1.0/images/aliases/does-not-exist  (07:59:37Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 125
+date: Thu, 08 Oct 2026 07:59:37 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Image alias not found","metadata":null}
+
+HTTP 404

@@ -1,0 +1,251 @@
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (08:00:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "a376ffeeeb640ef4f2fb2460d71e13402beff233168c633f5c18523966987607"
+content-length: 2238
+date: Thu, 08 Oct 2026 08:00:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.apply_template":"create","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"02146d1a-def9-4085-ac70-5b0c4e4c0bc8","volatile.eth0.hwaddr":"10:66:6a:fd:fc:66","volatile.uuid":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.uuid.generation":"cab61b05-2e5c-48eb-8a50-66c0639b701f"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T07:59:59.47969772Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.apply_template":"create","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"02146d1a-def9-4085-ac70-5b0c4e4c0bc8","volatile.eth0.hwaddr":"10:66:6a:fd:fc:66","volatile.uuid":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.uuid.generation":"cab61b05-2e5c-48eb-8a50-66c0639b701f"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Stopped","status_code":102,"last_used_at":"1970-01-01T00:00:00Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:00:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 400
+date: Thu, 08 Oct 2026 08:00:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Stopped","status_code":102,"disk":{"root":{"usage":-1,"total":10737418240}},"memory":{"usage":0,"usage_peak":0,"total":0,"swap_usage":0,"swap_usage_peak":0},"network":null,"pid":0,"processes":-1,"cpu":{"usage":0,"allocated_time":0},"started_at":"0001-01-01T00:00:00Z","os_info":null}}
+
+HTTP 200
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:00:14Z)
+-- request body: {"action":"start","timeout":30}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/dfc66607-adb8-47c7-826f-f01cec552f79
+content-length: 590
+date: Thu, 08 Oct 2026 08:00:14 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/dfc66607-adb8-47c7-826f-f01cec552f79","error_code":0,"error":"","metadata":{"id":"dfc66607-adb8-47c7-826f-f01cec552f79","class":"task","description":"Starting instance","created_at":"2026-10-08T15:00:14.326949769+07:00","updated_at":"2026-10-08T15:00:14.326949769+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/dfc66607-adb8-47c7-826f-f01cec552f79  (08:00:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 527
+date: Thu, 08 Oct 2026 08:00:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"dfc66607-adb8-47c7-826f-f01cec552f79","class":"task","description":"Starting instance","created_at":"2026-10-08T15:00:14.326949769+07:00","updated_at":"2026-10-08T15:00:14.326949769+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/dfc66607-adb8-47c7-826f-f01cec552f79/wait?timeout=600  (08:00:14Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 08:00:14 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"dfc66607-adb8-47c7-826f-f01cec552f79","class":"task","description":"Starting instance","created_at":"2026-10-08T15:00:14.326949769+07:00","updated_at":"2026-10-08T15:00:14.326949769+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:00:15Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 811
+date: Thu, 08 Oct 2026 08:00:15 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Running","status_code":103,"disk":{"root":{"usage":1105954078,"total":10737418240}},"memory":{"usage":196868000,"usage_peak":0,"total":1073741824,"swap_usage":0,"swap_usage_peak":0},"network":{"eth0":{"addresses":[{"family":"inet","address":"10.40.0.2","netmask":"24","scope":"global"}],"counters":{"bytes_received":0,"bytes_sent":0,"packets_received":0,"packets_sent":0,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"10:66:6a:fd:fc:66","host_name":"tap3e40cf60","mtu":1500,"state":"up","type":"broadcast"}},"pid":3702,"processes":-1,"cpu":{"usage":0,"allocated_time":0},"started_at":"2026-10-08T15:00:15.033041012+07:00","os_info":null}}
+
+HTTP 200
+
+-- sleep 45s for the guest agent / DHCP, then state again
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 1468
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Running","status_code":103,"disk":{"root":{"usage":1128502657,"total":10737418240}},"memory":{"usage":202125312,"usage_peak":0,"total":995528704,"swap_usage":0,"swap_usage_peak":0},"network":{"enp5s0":{"addresses":[{"family":"inet","address":"10.40.0.2","netmask":"24","scope":"global"},{"family":"inet6","address":"fe80::1266:6aff:fefd:fc66","netmask":"64","scope":"link"}],"counters":{"bytes_received":688,"bytes_sent":1102,"packets_received":2,"packets_sent":6,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"10:66:6a:fd:fc:66","host_name":"tap1bcb94d5","mtu":1500,"state":"up","type":"broadcast"},"lo":{"addresses":[{"family":"inet","address":"127.0.0.1","netmask":"8","scope":"local"},{"family":"inet6","address":"::1","netmask":"128","scope":"local"}],"counters":{"bytes_received":5920,"bytes_sent":5920,"packets_received":80,"packets_sent":80,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"","host_name":"","mtu":65536,"state":"up","type":"loopback"}},"pid":3804,"processes":98,"cpu":{"usage":3532500000,"allocated_time":0},"started_at":"2026-10-08T15:00:43.749746635+07:00","os_info":{"os":"Ubuntu","os_version":"24.04","kernel_version":"6.8.0-146-generic","hostname":"vm-11111111-2222-3333-4444-555555555555","fqdn":"localhost"}}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef&recursion=1  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "83e771af124abd887414b30caacd659e055085b69f7846dd997982a611bca688"
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"02146d1a-def9-4085-ac70-5b0c4e4c0bc8","volatile.eth0.host_name":"tap1bcb94d5","volatile.eth0.hwaddr":"10:66:6a:fd:fc:66","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.agent":"STARTED","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.uuid.generation":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"154416835"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T07:59:59.47969772Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"02146d1a-def9-4085-ac70-5b0c4e4c0bc8","volatile.eth0.host_name":"tap1bcb94d5","volatile.eth0.hwaddr":"10:66:6a:fd:fc:66","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.agent":"STARTED","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.uuid.generation":"cab61b05-2e5c-48eb-8a50-66c0639b701f","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"154416835"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T08:00:43.86983042Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef","backups":null,"state":{"status":"Running","status_code":103,"disk":{"root":{"usage":1128502657,"total":10737418240}},"memory":{"usage":202125312,"usage_peak":0,"total":995528704,"swap_usage":0,"swap_usage_peak":0},"network":{"enp5s0":{"addresses":[{"family":"inet","address":"10.40.0.2","netmask":"24","scope":"global"},{"family":"inet6","address":"fe80::1266:6aff:fefd:fc66","netmask":"64","scope":"link"}],"counters":{"bytes_received":688,"bytes_sent":1102,"packets_received":2,"packets_sent":6,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"10:66:6a:fd:fc:66","host_name":"tap1bcb94d5","mtu":1500,"state":"up","type":"broadcast"},"lo":{"addresses":[{"family":"inet","address":"127.0.0.1","netmask":"8","scope":"local"},{"family":"inet6","address":"::1","netmask":"128","scope":"local"}],"counters":{"bytes_received":5920,"bytes_sent":5920,"packets_received":80,"packets_sent":80,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"","host_name":"","mtu":65536,"state":"up","type":"loopback"}},"pid":3804,"processes":98,"cpu":{"usage":3572463000,"allocated_time":0},"started_at":"2026-10-08T15:00:43.749746635+07:00","os_info":{"os":"Ubuntu","os_version":"24.04","kernel_version":"6.8.0-146-generic","hostname":"vm-11111111-2222-3333-4444-555555555555","fqdn":"localhost"}},"snapshots":null}}
+
+HTTP 200
+
+-- start on a running instance
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- request body: {"action":"start","timeout":30}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/d0b1bbe1-343c-4626-a8af-9cadc9b67e7b
+content-length: 590
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/d0b1bbe1-343c-4626-a8af-9cadc9b67e7b","error_code":0,"error":"","metadata":{"id":"d0b1bbe1-343c-4626-a8af-9cadc9b67e7b","class":"task","description":"Starting instance","created_at":"2026-10-08T15:01:00.359102653+07:00","updated_at":"2026-10-08T15:01:00.359102653+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/d0b1bbe1-343c-4626-a8af-9cadc9b67e7b  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 558
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"d0b1bbe1-343c-4626-a8af-9cadc9b67e7b","class":"task","description":"Starting instance","created_at":"2026-10-08T15:01:00.359102653+07:00","updated_at":"2026-10-08T15:01:00.359102653+07:00","status":"Failure","status_code":400,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"The instance is already running","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/d0b1bbe1-343c-4626-a8af-9cadc9b67e7b/wait?timeout=600  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"d0b1bbe1-343c-4626-a8af-9cadc9b67e7b","class":"task","description":"Starting instance","created_at":"2026-10-08T15:01:00.359102653+07:00","updated_at":"2026-10-08T15:01:00.359102653+07:00","status":"Failure","status_code":400,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"The instance is already running","location":"none"}}
+
+HTTP 200
+
+-- DELETE on a running instance
+
+== DELETE /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- response headers:
+HTTP/2 400 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 123
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":400,"error":"Instance is running","metadata":null}
+
+HTTP 400
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- request body: {"action":"stop","timeout":30,"force":true}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/ab42bdca-ebf2-4563-8e0f-87fef5dd39f9
+content-length: 590
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/ab42bdca-ebf2-4563-8e0f-87fef5dd39f9","error_code":0,"error":"","metadata":{"id":"ab42bdca-ebf2-4563-8e0f-87fef5dd39f9","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:00.449035975+07:00","updated_at":"2026-10-08T15:01:00.449035975+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/ab42bdca-ebf2-4563-8e0f-87fef5dd39f9  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 527
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ab42bdca-ebf2-4563-8e0f-87fef5dd39f9","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:00.449035975+07:00","updated_at":"2026-10-08T15:01:00.449035975+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/ab42bdca-ebf2-4563-8e0f-87fef5dd39f9/wait?timeout=600  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"ab42bdca-ebf2-4563-8e0f-87fef5dd39f9","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:00.449035975+07:00","updated_at":"2026-10-08T15:01:00.449035975+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 400
+date: Thu, 08 Oct 2026 08:01:00 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Stopped","status_code":102,"disk":{"root":{"usage":-1,"total":10737418240}},"memory":{"usage":0,"usage_peak":0,"total":0,"swap_usage":0,"swap_usage_peak":0},"network":null,"pid":0,"processes":-1,"cpu":{"usage":0,"allocated_time":0},"started_at":"0001-01-01T00:00:00Z","os_info":null}}
+
+HTTP 200
+
+-- stop on a stopped instance
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (08:01:00Z)
+-- request body: {"action":"stop","timeout":30,"force":true}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba
+content-length: 590
+date: Thu, 08 Oct 2026 08:01:01 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba","error_code":0,"error":"","metadata":{"id":"6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:01.001696816+07:00","updated_at":"2026-10-08T15:01:01.001696816+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba  (08:01:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 558
+date: Thu, 08 Oct 2026 08:01:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:01.001696816+07:00","updated_at":"2026-10-08T15:01:01.001696816+07:00","status":"Failure","status_code":400,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"The instance is already stopped","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba/wait?timeout=600  (08:01:01Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 08:01:01 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"6fc8fcd8-7024-4a34-bf8a-f8fbb42467ba","class":"task","description":"Stopping instance","created_at":"2026-10-08T15:01:01.001696816+07:00","updated_at":"2026-10-08T15:01:01.001696816+07:00","status":"Failure","status_code":400,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"The instance is already stopped","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-00000000-0000-0000-0000-000000000000?project=t-0123456789abcdef0123456789abcdef  (08:01:01Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 242
+date: Thu, 08 Oct 2026 08:01:01 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Failed to fetch instance \"vm-00000000-0000-0000-0000-000000000000\" in project \"t-0123456789abcdef0123456789abcdef\": Instance not found","metadata":null}
+
+HTTP 404
+
+== GET /1.0/instances/vm-00000000-0000-0000-0000-000000000000/state?project=t-0123456789abcdef0123456789abcdef  (08:01:01Z)
+-- response headers:
+HTTP/2 404 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 242
+date: Thu, 08 Oct 2026 08:01:01 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":404,"error":"Failed to fetch instance \"vm-00000000-0000-0000-0000-000000000000\" in project \"t-0123456789abcdef0123456789abcdef\": Instance not found","metadata":null}
+
+HTTP 404

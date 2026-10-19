@@ -1,0 +1,56 @@
+[
+	{
+		"config": {
+			"features.images": "true",
+			"features.networks": "true",
+			"features.networks.zones": "true",
+			"features.profiles": "true",
+			"features.storage.buckets": "true",
+			"features.storage.volumes": "true"
+		},
+		"description": "Default Incus project",
+		"name": "default",
+		"used_by": [
+			"/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b",
+			"/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf",
+			"/1.0/networks/ovnup",
+			"/1.0/networks/vrackbr",
+			"/1.0/profiles/default"
+		]
+	},
+	{
+		"config": {
+			"features.images": "false",
+			"features.networks": "true",
+			"features.profiles": "true",
+			"features.storage.buckets": "true",
+			"features.storage.volumes": "true"
+		},
+		"description": "",
+		"name": "tenant-a",
+		"used_by": [
+			"/1.0/instances/a1?project=tenant-a",
+			"/1.0/instances/a2?project=tenant-a",
+			"/1.0/networks/net-a?project=tenant-a",
+			"/1.0/network-acls/no-icmp-in?project=tenant-a",
+			"/1.0/profiles/default?project=tenant-a"
+		]
+	},
+	{
+		"config": {
+			"features.images": "false",
+			"features.networks": "true",
+			"features.profiles": "true",
+			"features.storage.buckets": "true",
+			"features.storage.volumes": "true"
+		},
+		"description": "",
+		"name": "tenant-b",
+		"used_by": [
+			"/1.0/instances/b1?project=tenant-b",
+			"/1.0/networks/net-b?project=tenant-b",
+			"/1.0/profiles/default?project=tenant-b"
+		]
+	}
+]
+

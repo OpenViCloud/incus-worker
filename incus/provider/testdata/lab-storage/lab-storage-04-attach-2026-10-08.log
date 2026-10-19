@@ -1,0 +1,152 @@
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (14:37:45Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 812
+date: Thu, 08 Oct 2026 14:37:45 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Running","status_code":103,"disk":{"root":{"usage":1172526071,"total":10737418240}},"memory":{"usage":250016000,"usage_peak":0,"total":1073741824,"swap_usage":0,"swap_usage_peak":0},"network":{"eth0":{"addresses":[{"family":"inet","address":"10.40.0.2","netmask":"24","scope":"global"}],"counters":{"bytes_received":0,"bytes_sent":0,"packets_received":0,"packets_sent":0,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"10:66:6a:8f:e8:51","host_name":"tapd6934b4c","mtu":1500,"state":"up","type":"broadcast"}},"pid":10322,"processes":-1,"cpu":{"usage":0,"allocated_time":0},"started_at":"2026-10-08T21:37:44.257901862+07:00","os_info":null}}
+
+HTTP 200
+
+-- instance status before attach: Running
+
+== PATCH /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:45Z)
+-- request body: {"devices":{"vol-aaaaaaaa-0000-0000-0000-000000000001":{"type":"disk","pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001"}}}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+-- repeat the same attach PATCH
+
+== PATCH /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- request body: {"devices":{"vol-aaaaaaaa-0000-0000-0000-000000000001":{"type":"disk","pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001"}}}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 108
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "f6f452b40ab5d1bc1ca67a08534250dc7139e0e5e9a20397158c80be715aa7db"
+content-length: 488
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"config":{"size":"1GiB","user.titan-name":"data-1"},"description":"","name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","used_by":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:53.891124935Z"}}
+
+HTTP 200
+
+== GET /1.0/storage-pools/default/volumes?recursion=1&all-projects=true  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 2532
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":[{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a1","type":"container","used_by":["/1.0/instances/a1?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:43.016038739Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"a2","type":"container","used_by":["/1.0/instances/a2?project=tenant-a"],"location":"none","content_type":"filesystem","project":"tenant-a","created_at":"2026-10-07T04:08:44.270960884Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"b1","type":"container","used_by":["/1.0/instances/b1?project=tenant-b"],"location":"none","content_type":"filesystem","project":"tenant-b","created_at":"2026-10-07T04:09:18.289606821Z"},{"config":{"size":"1GiB","user.titan-name":"data-1"},"description":"","name":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"custom","used_by":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:53.891124935Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard","volatile.rootfs.size":"4294967296"},"description":"","name":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","type":"image","used_by":["/1.0/images/b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b"],"location":"none","content_type":"block","project":"default","created_at":"2026-10-07T01:50:54.026272537Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf","type":"image","used_by":["/1.0/images/e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf"],"location":"none","content_type":"filesystem","project":"default","created_at":"2026-10-07T01:52:39.071269815Z"},{"config":{"block.filesystem":"ext4","block.mount_options":"discard"},"description":"","name":"vm-11111111-2222-3333-4444-555555555555","type":"virtual-machine","used_by":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"],"location":"none","content_type":"block","project":"t-0123456789abcdef0123456789abcdef","created_at":"2026-10-08T14:36:39.478254086Z"}]}
+
+HTTP 200
+
+-- delete the volume while attached
+
+== DELETE /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 400 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 138
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":400,"error":"The storage volume is still in use","metadata":null}
+
+HTTP 400
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 200
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- request body: {"architecture": "aarch64", "config": {"cloud-init.user-data": "#cloud-config\npackage_update: false\n", "image.architecture": "arm64", "image.description": "Ubuntu noble arm64 (20261006_07:42)", "image.os": "Ubuntu", "image.release": "noble", "image.requirements.cgroup": "v2", "image.serial": "20261006_07:42", "image.type": "disk-kvm.img", "image.variant": "cloud", "limits.cpu": "1", "limits.memory": "1GiB", "volatile.base_image": "b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b", "volatile.cloud-init.instance-id": "75bcc1cd-d1c4-4784-8a9e-8abb28698ce0", "volatile.eth0.host_name": "tapd6934b4c", "volatile.eth0.hwaddr": "10:66:6a:8f:e8:51", "volatile.eth0.last_state.ip_addresses": "10.40.0.2", "volatile.last_state.power": "RUNNING", "volatile.last_state.ready": "false", "volatile.uuid": "754ccde4-9617-4bab-b1c2-07c21795dd17", "volatile.uuid.generation": "754ccde4-9617-4bab-b1c2-07c21795dd17", "volatile.vm.needs_reset": "true", "volatile.vm.rtc_adjustment": "0", "volatile.vm.rtc_offset": "0", "volatile.vsock_id": "2596352522"}, "devices": {"eth0": {"network": "net-11111111-2222-3333-4444-555555555555", "type": "nic"}, "root": {"path": "/", "pool": "default", "size": "10GiB", "type": "disk"}}, "ephemeral": false, "profiles": ["default"], "description": ""}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 
+
+== GET /1.0/storage-pools/default/volumes/custom/vol-aaaaaaaa-0000-0000-0000-000000000001?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 
+
+-- detach again (device already gone)
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef  (14:37:46Z)
+-- request body: {"architecture": "aarch64", "config": {"cloud-init.user-data": "#cloud-config\npackage_update: false\n", "image.architecture": "arm64", "image.description": "Ubuntu noble arm64 (20261006_07:42)", "image.os": "Ubuntu", "image.release": "noble", "image.requirements.cgroup": "v2", "image.serial": "20261006_07:42", "image.type": "disk-kvm.img", "image.variant": "cloud", "limits.cpu": "1", "limits.memory": "1GiB", "volatile.base_image": "b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b", "volatile.cloud-init.instance-id": "75bcc1cd-d1c4-4784-8a9e-8abb28698ce0", "volatile.eth0.host_name": "tapd6934b4c", "volatile.eth0.hwaddr": "10:66:6a:8f:e8:51", "volatile.eth0.last_state.ip_addresses": "10.40.0.2", "volatile.last_state.power": "RUNNING", "volatile.last_state.ready": "false", "volatile.uuid": "754ccde4-9617-4bab-b1c2-07c21795dd17", "volatile.uuid.generation": "754ccde4-9617-4bab-b1c2-07c21795dd17", "volatile.vm.needs_reset": "true", "volatile.vm.rtc_adjustment": "0", "volatile.vm.rtc_offset": "0", "volatile.vsock_id": "2596352522"}, "devices": {"eth0": {"network": "net-11111111-2222-3333-4444-555555555555", "type": "nic"}, "root": {"path": "/", "pool": "default", "size": "10GiB", "type": "disk"}}, "ephemeral": false, "profiles": ["default"], "description": ""}
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+etag: "45cd9d2563d7dd573668af2b59aa85528df19fb3450f1ccdcbfab24e055f3863"
+content-length: 3023
+date: Thu, 08 Oct 2026 14:37:46 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"architecture":"aarch64","config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"ephemeral":false,"profiles":["default"],"stateful":false,"description":"","created_at":"2026-10-08T14:36:39.478254086Z","expanded_config":{"cloud-init.user-data":"#cloud-config\npackage_update: false\n","image.architecture":"arm64","image.description":"Ubuntu noble arm64 (20261006_07:42)","image.os":"Ubuntu","image.release":"noble","image.requirements.cgroup":"v2","image.serial":"20261006_07:42","image.type":"disk-kvm.img","image.variant":"cloud","limits.cpu":"1","limits.memory":"1GiB","volatile.base_image":"b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b","volatile.cloud-init.instance-id":"75bcc1cd-d1c4-4784-8a9e-8abb28698ce0","volatile.eth0.host_name":"tapd6934b4c","volatile.eth0.hwaddr":"10:66:6a:8f:e8:51","volatile.eth0.last_state.ip_addresses":"10.40.0.2","volatile.last_state.power":"RUNNING","volatile.last_state.ready":"false","volatile.uuid":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.uuid.generation":"754ccde4-9617-4bab-b1c2-07c21795dd17","volatile.vm.needs_reset":"true","volatile.vm.rtc_adjustment":"0","volatile.vm.rtc_offset":"0","volatile.vsock_id":"2596352522"},"expanded_devices":{"eth0":{"network":"net-11111111-2222-3333-4444-555555555555","type":"nic"},"root":{"path":"/","pool":"default","size":"10GiB","type":"disk"},"vol-aaaaaaaa-0000-0000-0000-000000000001":{"pool":"default","source":"vol-aaaaaaaa-0000-0000-0000-000000000001","type":"disk"}},"name":"vm-11111111-2222-3333-4444-555555555555","status":"Running","status_code":103,"last_used_at":"2026-10-08T14:37:44.357062214Z","location":"none","type":"virtual-machine","project":"t-0123456789abcdef0123456789abcdef"}}
+
+HTTP 

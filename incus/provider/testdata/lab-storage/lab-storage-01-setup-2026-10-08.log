@@ -1,0 +1,109 @@
+
+== POST /1.0/projects  (14:36:39Z)
+-- request body: {"name":"t-0123456789abcdef0123456789abcdef","description":"","config":{"features.images":"false","features.networks":"true","features.profiles":"true","features.storage.buckets":"true","features.storage.volumes":"true"}}
+-- response headers:
+HTTP/2 409 
+content-type: application/json
+x-content-type-options: nosniff
+content-length: 236
+date: Thu, 08 Oct 2026 14:36:39 GMT
+-- response body:
+{"type":"error","status":"","status_code":0,"operation":"","error_code":409,"error":"Failed creating project \"t-0123456789abcdef0123456789abcdef\": Failed adding database record: This \"Project\" entry already exists","metadata":null}
+
+HTTP 409
+
+== POST /1.0/networks?project=t-0123456789abcdef0123456789abcdef  (14:36:39Z)
+-- request body: {"name":"net-11111111-2222-3333-4444-555555555555","description":"","type":"ovn","config":{"network":"ovnup","ipv4.address":"10.40.0.1/24","ipv4.nat":"true","ipv6.address":"none"}}
+-- response headers:
+HTTP/2 201 
+content-type: application/json
+location: /1.0/networks/net-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef
+content-length: 110
+date: Thu, 08 Oct 2026 14:36:39 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":null}
+
+HTTP 201
+
+== POST /1.0/instances?project=t-0123456789abcdef0123456789abcdef  (14:36:39Z)
+-- request body: {"name":"vm-11111111-2222-3333-4444-555555555555","type":"virtual-machine","source":{"type":"image","alias":"alma-9"},"config":{"limits.cpu":"1","limits.memory":"1GiB","cloud-init.user-data":"#cloud-config\npackage_update: false\n"},"devices":{"eth0":{"type":"nic","network":"net-11111111-2222-3333-4444-555555555555"},"root":{"type":"disk","pool":"default","path":"/","size":"10GiB"}},"start":false}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/78e79d82-397c-485f-a8b8-a46f267d2af6
+content-length: 590
+date: Thu, 08 Oct 2026 14:36:39 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/78e79d82-397c-485f-a8b8-a46f267d2af6","error_code":0,"error":"","metadata":{"id":"78e79d82-397c-485f-a8b8-a46f267d2af6","class":"task","description":"Creating instance","created_at":"2026-10-08T21:36:39.471961342+07:00","updated_at":"2026-10-08T21:36:39.471961342+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/78e79d82-397c-485f-a8b8-a46f267d2af6  (14:36:39Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 527
+date: Thu, 08 Oct 2026 14:36:39 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"78e79d82-397c-485f-a8b8-a46f267d2af6","class":"task","description":"Creating instance","created_at":"2026-10-08T21:36:39.471961342+07:00","updated_at":"2026-10-08T21:36:39.471961342+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/78e79d82-397c-485f-a8b8-a46f267d2af6/wait?timeout=600  (14:36:39Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 14:36:39 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"78e79d82-397c-485f-a8b8-a46f267d2af6","class":"task","description":"Creating instance","created_at":"2026-10-08T21:36:39.471961342+07:00","updated_at":"2026-10-08T21:36:39.471961342+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== PUT /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (14:36:42Z)
+-- request body: {"action":"start","timeout":-1}
+-- response headers:
+HTTP/2 202 
+content-type: application/json
+location: /1.0/operations/150a7ed2-de24-4ffa-bcd2-100d818ba870
+content-length: 590
+date: Thu, 08 Oct 2026 14:36:42 GMT
+-- response body:
+{"type":"async","status":"Operation created","status_code":100,"operation":"/1.0/operations/150a7ed2-de24-4ffa-bcd2-100d818ba870","error_code":0,"error":"","metadata":{"id":"150a7ed2-de24-4ffa-bcd2-100d818ba870","class":"task","description":"Starting instance","created_at":"2026-10-08T21:36:42.267984631+07:00","updated_at":"2026-10-08T21:36:42.267984631+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 202
+
+== GET /1.0/operations/150a7ed2-de24-4ffa-bcd2-100d818ba870  (14:36:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 527
+date: Thu, 08 Oct 2026 14:36:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"150a7ed2-de24-4ffa-bcd2-100d818ba870","class":"task","description":"Starting instance","created_at":"2026-10-08T21:36:42.267984631+07:00","updated_at":"2026-10-08T21:36:42.267984631+07:00","status":"Running","status_code":103,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/operations/150a7ed2-de24-4ffa-bcd2-100d818ba870/wait?timeout=600  (14:36:42Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+x-content-type-options: nosniff
+date: Thu, 08 Oct 2026 14:36:42 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"id":"150a7ed2-de24-4ffa-bcd2-100d818ba870","class":"task","description":"Starting instance","created_at":"2026-10-08T21:36:42.267984631+07:00","updated_at":"2026-10-08T21:36:42.267984631+07:00","status":"Success","status_code":200,"resources":{"instances":["/1.0/instances/vm-11111111-2222-3333-4444-555555555555?project=t-0123456789abcdef0123456789abcdef"]},"metadata":{},"may_cancel":false,"err":"","location":"none"}}
+
+HTTP 200
+
+== GET /1.0/instances/vm-11111111-2222-3333-4444-555555555555/state?project=t-0123456789abcdef0123456789abcdef  (14:36:45Z)
+-- response headers:
+HTTP/2 200 
+content-type: application/json
+content-length: 811
+date: Thu, 08 Oct 2026 14:36:45 GMT
+-- response body:
+{"type":"sync","status":"Success","status_code":200,"operation":"","error_code":0,"error":"","metadata":{"status":"Running","status_code":103,"disk":{"root":{"usage":1105954078,"total":10737418240}},"memory":{"usage":197588000,"usage_peak":0,"total":1073741824,"swap_usage":0,"swap_usage_peak":0},"network":{"eth0":{"addresses":[{"family":"inet","address":"10.40.0.2","netmask":"24","scope":"global"}],"counters":{"bytes_received":0,"bytes_sent":0,"packets_received":0,"packets_sent":0,"errors_received":0,"errors_sent":0,"packets_dropped_outbound":0,"packets_dropped_inbound":0},"hwaddr":"10:66:6a:8f:e8:51","host_name":"tap7a4b1b9f","mtu":1500,"state":"up","type":"broadcast"}},"pid":9822,"processes":-1,"cpu":{"usage":0,"allocated_time":0},"started_at":"2026-10-08T21:36:44.434864941+07:00","os_info":null}}
+
+HTTP 200
+
+-- instance status: Running

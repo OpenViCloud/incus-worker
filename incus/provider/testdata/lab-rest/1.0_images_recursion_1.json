@@ -1,0 +1,75 @@
+[
+	{
+		"aliases": [],
+		"architecture": "aarch64",
+		"auto_update": true,
+		"cached": true,
+		"created_at": "2026-10-06T00:00:00Z",
+		"expires_at": "1970-01-01T00:00:00Z",
+		"filename": "incus.tar.xz",
+		"fingerprint": "b89557e2fde36cf2492fcca65f8df6975a5a0e220cd386e2f86d69940db0bb3b",
+		"last_used_at": "2026-10-07T04:13:26.498868651Z",
+		"profiles": [
+			"default"
+		],
+		"project": "default",
+		"properties": {
+			"architecture": "arm64",
+			"description": "Ubuntu noble arm64 (20261006_07:42)",
+			"os": "Ubuntu",
+			"release": "noble",
+			"requirements.cgroup": "v2",
+			"serial": "20261006_07:42",
+			"type": "disk-kvm.img",
+			"variant": "cloud"
+		},
+		"public": false,
+		"size": 353603748,
+		"type": "virtual-machine",
+		"update_source": {
+			"alias": "ubuntu/24.04/cloud",
+			"certificate": "",
+			"image_type": "",
+			"protocol": "simplestreams",
+			"server": "https://images.linuxcontainers.org"
+		},
+		"uploaded_at": "2026-10-07T01:50:53.93284845Z"
+	},
+	{
+		"aliases": [],
+		"architecture": "aarch64",
+		"auto_update": true,
+		"cached": true,
+		"created_at": "2026-10-06T00:00:00Z",
+		"expires_at": "1970-01-01T00:00:00Z",
+		"filename": "incus.tar.xz",
+		"fingerprint": "e64333d4d8a5ded5adcf2bbefbc1fe0ad2947ad8eb4ea89940a972bd1a9abdcf",
+		"last_used_at": "2026-10-07T04:13:44.846941077Z",
+		"profiles": [
+			"default"
+		],
+		"project": "default",
+		"properties": {
+			"architecture": "arm64",
+			"description": "Ubuntu noble arm64 (20261006_07:42)",
+			"os": "Ubuntu",
+			"release": "noble",
+			"requirements.cgroup": "v2",
+			"serial": "20261006_07:42",
+			"type": "squashfs",
+			"variant": "default"
+		},
+		"public": false,
+		"size": 137986732,
+		"type": "container",
+		"update_source": {
+			"alias": "ubuntu/24.04",
+			"certificate": "",
+			"image_type": "",
+			"protocol": "simplestreams",
+			"server": "https://images.linuxcontainers.org"
+		},
+		"uploaded_at": "2026-10-07T01:52:39.028420576Z"
+	}
+]
+

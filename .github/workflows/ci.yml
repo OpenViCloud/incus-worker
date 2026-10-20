@@ -1,6 +1,6 @@
 name: CI
 
-# Build, vet, unit tests, the copy of the control plane's command kinds matching the titan commit it names
+# Build, vet, unit tests, the copy of the control plane's command kinds matching the control-plane commit it names
 # (contract/SOURCE, synced by scripts/sync-kinds.sh), and the image, pushed only from main.
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       - name: Kinds copy matches contract/SOURCE
         run: |
           sha=$(cat contract/SOURCE)
-          curl -fsSL "https://raw.githubusercontent.com/OpenViCloud/titan/$sha/control-plane/Titan.Domain/Aggregates/Platform/ProviderCommand/ProviderCommandKinds.cs" \
+          curl -fsSL "https://raw.githubusercontent.com/OpenViCloud/control-plane/$sha/Titan.Domain/Aggregates/Platform/ProviderCommand/ProviderCommandKinds.cs" \
             | diff - contract/ProviderCommandKinds.cs
 
       - name: Format

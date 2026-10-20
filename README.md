@@ -61,7 +61,8 @@ To take a newer list:
 scripts/sync-kinds.sh <titan commit, tag or branch>
 ```
 
-CI fails when the copy differs from the file at `contract/SOURCE`. The design rules of the worker live in titan's
+CI fails when the copy differs from the file at `contract/SOURCE`. Each push to `main` whose tests pass publishes
+the image `ghcr.io/openvicloud/incus-worker:<commit sha>` (linux/arm64). The design rules of the worker live in titan's
 [docs/architecture/worker-structure.md](https://github.com/OpenViCloud/titan/blob/main/docs/architecture/worker-structure.md)
 and [docs/architecture/provider-and-worker.md](https://github.com/OpenViCloud/titan/blob/main/docs/architecture/provider-and-worker.md).
 

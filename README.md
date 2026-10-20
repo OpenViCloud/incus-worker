@@ -52,14 +52,15 @@ go build -o incus-worker .
 ```
 
 `contract/ProviderCommandKinds.cs` is a verbatim copy of the control plane's list of command kinds, and
-`contract/SOURCE` names the titan commit it was copied from. A test fails when a kind in that copy has no route here;
-a route with no kind yet is allowed, since a new kind ships here before the control plane enqueues it. Titan's CI
-runs the same test with its own kinds against this repo's `main`: a control plane change adding a kind this repo
-does not route yet fails its check, and no control plane image is built from it.
+`contract/SOURCE` names the [OpenViCloud/control-plane](https://github.com/OpenViCloud/control-plane) commit it was
+copied from. A test fails when a kind in that copy has no route here; a route with no kind yet is allowed, since a new
+kind ships here before the control plane enqueues it. The control plane's CI runs the same test with its own kinds
+against this repo's `main`: a control plane change adding a kind this repo does not route yet fails its check, and no
+control plane image is published from it.
 To take a newer list:
 
 ```sh
-scripts/sync-kinds.sh <titan commit, tag or branch>
+scripts/sync-kinds.sh <control-plane commit, tag or branch>
 ```
 
 CI fails when the copy differs from the file at `contract/SOURCE`. Each push to `main` whose tests pass publishes

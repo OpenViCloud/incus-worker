@@ -68,7 +68,10 @@ func controlPlaneKinds(t *testing.T) []string {
 	return kinds
 }
 
-func TestRoutes_AreExactlyTheControlPlanesKinds(t *testing.T) {
+// A route with no kind yet is allowed: the worker ships a new kind before the control plane enqueues it, and keeps a
+// removed one until the control plane has stopped
+// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/provider-and-worker.md#contract-changes).
+func TestRoutes_CoverTheControlPlanesKinds(t *testing.T) {
 	routes := routes(nil, nil, "")
 	kinds := controlPlaneKinds(t)
 
@@ -77,8 +80,5 @@ func TestRoutes_AreExactlyTheControlPlanesKinds(t *testing.T) {
 		if !found || route.Timeout <= 0 {
 			t.Errorf("%s: no route, or a route without a timeout", kind)
 		}
-	}
-	if len(routes) != len(kinds) {
-		t.Fatalf("the control plane has %d kinds, the worker routes %d", len(kinds), len(routes))
 	}
 }

@@ -1,7 +1,7 @@
 name: CI
 
 # Build, vet, unit tests, the copy of the control plane's command kinds matching the titan commit it names
-# (contract/SOURCE, synced by scripts/sync-kinds.sh), and the image build without pushing it.
+# (contract/SOURCE, synced by scripts/sync-kinds.sh), and the image, pushed only from main.
 on:
   push:
     branches: [main]
@@ -41,9 +41,14 @@ jobs:
       - name: Test
         run: go test ./... -count=1
 
+  # Pushed only from main, once the tests passed, tagged with the full commit sha.
   image:
     name: Image build
     runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -53,9 +58,18 @@ jobs:
 
       - uses: docker/setup-buildx-action@v3
 
-      - name: Build (not pushed)
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build, and push from main
         uses: docker/build-push-action@v5
         with:
           context: .
           platforms: linux/arm64
-          push: false
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: ghcr.io/openvicloud/incus-worker:${{ github.sha }}

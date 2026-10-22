@@ -1,6 +1,6 @@
-# incus-worker — OpenViCloud's worker on Incus
+# titan-incus-worker — OpenViCloud's worker on Incus
 
-`incus-worker` is the part of [OpenViCloud](https://github.com/OpenViCloud/titan) that changes things on
+`titan-incus-worker` is the part of [OpenViCloud](https://github.com/OpenViCloud) that changes things on
 [Incus](https://linuxcontainers.org/incus/) (the control plane itself only reads, and relays SSH sessions). The control
 plane writes provider commands (create a VM, delete a network, sync a template…) to a table; the worker leases them
 over the control plane's `/internal` API, carries them out on the zone's Incus cluster, and reports the outcome. Every
@@ -52,7 +52,7 @@ go build -o incus-worker .
 ```
 
 `contract/ProviderCommandKinds.cs` is a verbatim copy of the control plane's list of command kinds, and
-`contract/SOURCE` names the [OpenViCloud/control-plane](https://github.com/OpenViCloud/control-plane) commit it was
+`contract/SOURCE` names the [OpenViCloud/titan-control-plane](https://github.com/OpenViCloud/titan-control-plane) commit it was
 copied from. A test fails when a kind in that copy has no route here; a route with no kind yet is allowed, since a new
 kind ships here before the control plane enqueues it. The control plane's CI runs the same test with its own kinds
 against this repo's `main`: a control plane change adding a kind this repo does not route yet fails its check, and no
@@ -64,9 +64,9 @@ scripts/sync-kinds.sh <control-plane commit, tag or branch>
 ```
 
 CI fails when the copy differs from the file at `contract/SOURCE`. Each push to `main` whose tests pass publishes
-the image `ghcr.io/openvicloud/incus-worker:<commit sha>` (linux/arm64). The design rules of the worker live in titan's
-[docs/architecture/worker-structure.md](https://github.com/OpenViCloud/titan/blob/main/docs/architecture/worker-structure.md)
-and [docs/architecture/provider-and-worker.md](https://github.com/OpenViCloud/titan/blob/main/docs/architecture/provider-and-worker.md).
+the image `ghcr.io/openvicloud/titan-incus-worker:<commit sha>` (linux/arm64). The design rules of the worker live in titan-ops's
+[docs/architecture/worker-structure.md](https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/worker-structure.md)
+and [docs/architecture/provider-and-worker.md](https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/provider-and-worker.md).
 
 ## License
 

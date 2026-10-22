@@ -8,8 +8,8 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
 )
 
 // ReconcilableVmSnapshot mirrors ReconcilableVmSnapshotQueryResult: what Titan last recorded of a snapshot.
@@ -27,7 +27,7 @@ const (
 )
 
 // Reconcile observes one zone's VM snapshots and reports what differs; it never acts on Incus, and it never reports
-// Deleted: a snapshot gone is NotFound (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#existence-axis). The all-projects
+// Deleted: a snapshot gone is NotFound (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#existence-axis). The all-projects
 // instance list (recursion=2) carries each instance's snapshots (lab-storage 05), so one read covers them all.
 func Reconcile(ctx context.Context, cp *controlplane.Client, p provider.Provider, zoneId string, logger *slog.Logger) error {
 	var rows []ReconcilableVmSnapshot

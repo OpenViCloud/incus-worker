@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/resource/volume"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/resource/volume"
 )
 
 // deletePayload mirrors EnqueueVolumeSnapshotDeleteAsync.
@@ -22,7 +22,7 @@ type deletePayload struct {
 }
 
 // Delete runs volume-snapshot.delete and reports Deleted; giving up reports the request failed, which gives the snapshot
-// back (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#abandoned-request).
+// back (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#abandoned-request).
 type Delete struct {
 	cp    *controlplane.Client
 	zones cluster.Zones

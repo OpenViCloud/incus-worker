@@ -8,8 +8,8 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
 )
 
 // ReconcilableVolume mirrors ReconcilableVolumeQueryResult: what Titan last recorded of a volume. The attached VM is
@@ -49,7 +49,7 @@ type observedVolume struct {
 
 // Reconcile observes one zone's volumes and volume snapshots and reports what differs; it never acts on Incus, and it
 // never reports Deleted: a volume or snapshot gone is NotFound, only Titan's own delete command says Deleted
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#existence-axis). The all-projects volume list has no snapshots
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#existence-axis). The all-projects volume list has no snapshots
 // (lab-storage 02), so the snapshots of each volume are one more read. A failed read skips what it would have said:
 // reading it as "nothing there" would report everything gone.
 func Reconcile(ctx context.Context, cp *controlplane.Client, p provider.Provider, zoneId string, storagePool string, logger *slog.Logger) error {

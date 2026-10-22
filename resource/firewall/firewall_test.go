@@ -11,9 +11,9 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const (
@@ -460,7 +460,7 @@ func TestReconcile_SendsTheIncusStateAsIs_AndGoneAsNotFound(t *testing.T) {
 	}
 }
 
-// The reconciler never reports Deleted (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#existence-axis): even a rule whose
+// The reconciler never reports Deleted (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#existence-axis): even a rule whose
 // delete waits is only not found; the delete command confirms it.
 func TestReconcile_RuleGone_NeverReportsDeleted(t *testing.T) {
 	cp := testsupport.NewControlPlane(t)

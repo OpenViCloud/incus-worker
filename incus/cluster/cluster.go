@@ -1,5 +1,5 @@
 // Package cluster resolves a zone to a connected Incus cluster through the control plane
-// (https://github.com/OpenViCloud/titan/blob/main/docs/features/cluster/design.md#worker-cluster-connection), caching the connection for a few minutes.
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/cluster/design.md#worker-cluster-connection), caching the connection for a few minutes.
 package cluster
 
 import (
@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
 )
 
 // ErrNoCluster: the zone has no cluster row (404 CLUSTER_NOT_FOUND). A command for it cannot succeed by retrying.

@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const (
@@ -189,7 +189,7 @@ func TestSync_GiveUp_ReportsRequestFailedWithItsZone_AFixedReason_AndTheRawError
 }
 
 // The reason tells the operator which of the causes they can act on it was: a cluster of another architecture, or a
-// zone with no cluster (https://github.com/OpenViCloud/titan/blob/main/docs/features/catalog/design.md#template-reports).
+// zone with no cluster (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/catalog/design.md#template-reports).
 func TestSync_GiveUp_NamesTheCauseInTheReason(t *testing.T) {
 	cases := []struct {
 		name  string

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 type deletePayload struct {
@@ -20,7 +20,7 @@ type deletePayload struct {
 
 // Delete runs volume.delete and reports Deleted. Incus refuses while the volume is attached (400, lab-storage 04): an
 // error the next lease may get past. Giving up reports the request failed, which gives the volume back
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#abandoned-request).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#abandoned-request).
 type Delete struct {
 	cp    *controlplane.Client
 	zones cluster.Zones

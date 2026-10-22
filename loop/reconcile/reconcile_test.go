@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 // recordingKind is a reconciler that notes each zone it ran in, and fails when told to.

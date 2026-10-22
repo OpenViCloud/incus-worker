@@ -1,16 +1,16 @@
 // Package loadbalancer runs the load balancer provider commands and the zone's load balancer reconciler. A Titan load
 // balancer is one Incus network load balancer on its network, named by its VIP
-// (https://github.com/OpenViCloud/titan/blob/main/docs/features/load-balancer/design.md#lb-resource-model).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/load-balancer/design.md#lb-resource-model).
 package loadbalancer
 
 import (
 	"context"
 	"net/url"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
 )
 
-// The reports UpdateLoadBalancerStatusCommandHandler accepts (https://github.com/OpenViCloud/titan/blob/main/docs/features/load-balancer/design.md#lb-lifecycle).
+// The reports UpdateLoadBalancerStatusCommandHandler accepts (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/load-balancer/design.md#lb-lifecycle).
 const (
 	reportObserved      = "Observed"
 	reportCreated       = "Created"
@@ -20,7 +20,7 @@ const (
 )
 
 // Reason is returned verbatim to the tenant, so it carries only these fixed texts; the raw error goes to the
-// admin-only detail (https://github.com/OpenViCloud/titan/blob/main/docs/features/public-api/design.md#status-reason).
+// admin-only detail (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/public-api/design.md#status-reason).
 const (
 	reasonCreateFailed = "Load balancer creation failed due to a system error. Please try again or contact support."
 	reasonUpdateFailed = "Load balancer update failed due to a system error. Please try again or contact support."

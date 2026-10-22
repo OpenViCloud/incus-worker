@@ -9,10 +9,10 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 const (
@@ -39,7 +39,7 @@ type createPayload struct {
 }
 
 // Create runs vm.create. It reports only the provider id (Created) or the give-up; the zone's reconciler reports
-// Running (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#desired-and-current).
+// Running (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#desired-and-current).
 type Create struct {
 	cp    *controlplane.Client
 	zones cluster.Zones
@@ -150,7 +150,7 @@ func InstanceRequest(payload createPayload, storagePool string) (api.InstancesPo
 		config[userDataKey] = payload.UserData
 	}
 	// Titan's own script, built by the control plane; empty when no key was picked
-	// (https://github.com/OpenViCloud/titan/blob/main/docs/features/vm/design.md#ssh-key).
+	// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/vm/design.md#ssh-key).
 	if payload.VendorData != "" {
 		config[vendorDataKey] = payload.VendorData
 	}

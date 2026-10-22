@@ -11,9 +11,9 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const (
@@ -180,7 +180,7 @@ func usedVolume(users ...string) *api.StorageVolume {
 }
 
 // The attach reports what Incus then shows: the instances in the volume's used_by, for the control plane to match to
-// its VMs (https://github.com/OpenViCloud/titan/blob/main/docs/features/volume/design.md#attachment-from-used-by).
+// its VMs (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/volume/design.md#attachment-from-used-by).
 func TestAttach_PatchesADiskNamedAfterTheVolume_InTheZonesPool_AndReportsTheInstancesUsingIt(t *testing.T) {
 	cp := testsupport.NewControlPlane(t)
 	p := testsupport.NewProvider()
@@ -484,7 +484,7 @@ func TestDecideSnapshotReport(t *testing.T) {
 }
 
 // Reconciler never reports Deleted: a volume gone is NotFound, whatever was asked
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#existence-axis).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#existence-axis).
 func TestReconcile_ReadsTheSnapshotsOfAVolumeOnce_AndReportsEachChange_NeverDeleted(t *testing.T) {
 	cp := testsupport.NewControlPlane(t)
 	cp.Respond("GET", "/internal/reconcile/volumes?zoneId=mock", 200, `{

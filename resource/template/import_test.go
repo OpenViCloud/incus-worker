@@ -13,9 +13,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const imagePath = "/releases/jammy/release/ubuntu-22.04-server-cloudimg-"

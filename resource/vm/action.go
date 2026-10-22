@@ -8,10 +8,10 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 // The operation errors Incus gives an action that is already done (lab 05).
@@ -29,7 +29,7 @@ type actionPayload struct {
 }
 
 // Action runs vm.stop or vm.start. Success reports nothing: the reconciler observes Stopped/Running. Giving up
-// withdraws the intent (https://github.com/OpenViCloud/titan/blob/main/docs/features/vm/design.md#intent-failed-callback).
+// withdraws the intent (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/vm/design.md#intent-failed-callback).
 type Action struct {
 	cp          *controlplane.Client
 	zones       cluster.Zones
@@ -37,7 +37,7 @@ type Action struct {
 	alreadyDone string
 	// Incus counts a Frozen instance as running: action "start" answers "already running" and leaves it Frozen,
 	// so a start reads the instance first and resumes a Frozen one with "unfreeze"
-	// (https://github.com/OpenViCloud/titan/blob/main/docs/features/vm/design.md#requests-follow-incus).
+	// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/vm/design.md#requests-follow-incus).
 	unfreezesFrozen bool
 }
 

@@ -5,9 +5,9 @@ import (
 	"errors"
 	"log/slog"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 // Update runs load-balancer.update: the whole asked configuration in one write, then Updated with the intent it ends.
@@ -47,7 +47,7 @@ func (h *Update) Run(ctx context.Context, leased command.Leased, logger *slog.Lo
 }
 
 // GiveUp names the intent, so a give-up that a delete has since replaced is read as stale
-// (https://github.com/OpenViCloud/titan/blob/main/docs/features/load-balancer/design.md#lb-lifecycle).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/load-balancer/design.md#lb-lifecycle).
 func (h *Update) GiveUp(ctx context.Context, leased command.Leased, cause error, logger *slog.Logger) error {
 	var payload specPayload
 	if err := command.DecodePayload(leased, &payload); err != nil {

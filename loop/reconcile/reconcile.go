@@ -1,5 +1,5 @@
 // Package reconcile is the reconciler loop: every interval, each kind in each zone that has a cluster
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/provider-and-worker.md#reconciler-is-a-worker-ticker). An error skips that zone and kind for the
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/provider-and-worker.md#reconciler-is-a-worker-ticker). An error skips that zone and kind for the
 // cycle; the loop never exits on one.
 package reconcile
 
@@ -9,8 +9,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
 )
 
 // zoneInfo mirrors the control plane's ZoneInfo on GET /v1/zones.

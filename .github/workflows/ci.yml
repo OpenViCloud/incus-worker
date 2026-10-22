@@ -26,7 +26,7 @@ jobs:
       - name: Kinds copy matches contract/SOURCE
         run: |
           sha=$(cat contract/SOURCE)
-          curl -fsSL "https://raw.githubusercontent.com/OpenViCloud/control-plane/$sha/Titan.Domain/Aggregates/Platform/ProviderCommand/ProviderCommandKinds.cs" \
+          curl -fsSL "https://raw.githubusercontent.com/OpenViCloud/titan-control-plane/$sha/Titan.Domain/Aggregates/Platform/ProviderCommand/ProviderCommandKinds.cs" \
             | diff - contract/ProviderCommandKinds.cs
 
       - name: Format
@@ -41,11 +41,37 @@ jobs:
       - name: Test
         run: go test ./... -count=1
 
-  # Pushed only from main, once the tests passed, tagged with the full commit sha.
+  # Built on every run beside the tests, its layers kept in the Actions cache. Pushed only from main, once the tests
+  # passed, by the push job reading those layers back, tagged with the full commit sha. The source label links the
+  # package to this repository. The old name incus-worker keeps dev's scripts/pull-images.py working until dev reads
+  # titan-incus-worker.
   image:
     name: Image build
     runs-on: ubuntu-latest
-    needs: test
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/arm64
+          push: false
+          labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          cache-from: type=gha,scope=titan-incus-worker
+          cache-to: type=gha,mode=max,scope=titan-incus-worker
+
+  push:
+    name: Image push
+    runs-on: ubuntu-latest
+    needs: [test, image]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: read
       packages: write
@@ -59,17 +85,20 @@ jobs:
       - uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build, and push from main
+      - name: Push
         uses: docker/build-push-action@v5
         with:
           context: .
           platforms: linux/arm64
-          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-          tags: ghcr.io/openvicloud/incus-worker:${{ github.sha }}
+          push: true
+          tags: |
+            ghcr.io/openvicloud/titan-incus-worker:${{ github.sha }}
+            ghcr.io/openvicloud/incus-worker:${{ github.sha }}
+          labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          cache-from: type=gha,scope=titan-incus-worker

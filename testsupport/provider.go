@@ -16,7 +16,7 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
 )
 
 // Provider is an in-memory provider.Provider. Errors set on it are returned by the matching call; every call is

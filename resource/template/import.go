@@ -20,8 +20,8 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 // archPlaceholder in a template's imageUrl stands for the architecture as the distro names its files.
@@ -34,7 +34,7 @@ const checksumFileName = "SHA256SUMS"
 var distroArchitectures = map[string]string{"x86_64": "amd64", "aarch64": "arm64"}
 
 // importImage downloads the distro's own image for the cluster's architecture, checks it against the checksum the
-// distro publishes, and uploads it under the alias (https://github.com/OpenViCloud/titan/blob/main/docs/features/catalog/design.md#template-is-an-image-alias).
+// distro publishes, and uploads it under the alias (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/catalog/design.md#template-is-an-image-alias).
 // The image goes to a temporary file, never into memory: it is hundreds of MB and the worker has 256 MiB.
 func (h *Sync) importImage(ctx context.Context, p provider.Provider, payload syncPayload, alias string) error {
 	// The URL is the only architecture guard on this path: the metadata carries the cluster's own architecture,

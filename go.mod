@@ -1,4 +1,4 @@
-module github.com/OpenViCloud/incus-worker
+module github.com/OpenViCloud/titan-incus-worker
 
 go 1.25.11
 

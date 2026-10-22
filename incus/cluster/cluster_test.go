@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const connectionPath = "/internal/clusters/mock/connection"

@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 // decidingHandler logs one decision with the logger the loop hands it.

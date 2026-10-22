@@ -7,10 +7,10 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 const forceStopTimeoutSeconds = 30
@@ -23,7 +23,7 @@ type deletePayload struct {
 }
 
 // Delete runs vm.delete and reports Deleted once Incus no longer has the instance
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#forget-on-provider-confirm). It has no give-up callback: the VM keeps its
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#forget-on-provider-confirm). It has no give-up callback: the VM keeps its
 // delete waiting, and a repeated delete reruns the failed command.
 type Delete struct {
 	cp    *controlplane.Client

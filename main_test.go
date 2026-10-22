@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/reconcile"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/reconcile"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 // The reconcile loop knows no resource; this is where every resource's reconciler must be registered.

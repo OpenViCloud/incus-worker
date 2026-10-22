@@ -1,4 +1,5 @@
 .git
 .github
 /incus-worker
+/titan-incus-worker
 /worker

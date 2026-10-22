@@ -31,7 +31,7 @@ type Provider interface {
 	GetNetwork(ctx context.Context, project string, name string) (*api.Network, string, error)
 	UpdateNetwork(ctx context.Context, project string, name string, network api.NetworkPut, etag string) error
 
-	// Network ACLs carry a tenant network's firewall rules (https://github.com/OpenViCloud/titan/blob/main/docs/features/network/design.md#firewall-on-incus).
+	// Network ACLs carry a tenant network's firewall rules (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/network/design.md#firewall-on-incus).
 	GetNetworkACL(ctx context.Context, project string, name string) (*api.NetworkACL, string, error)
 	CreateNetworkACL(ctx context.Context, project string, acl api.NetworkACLsPost) error
 	UpdateNetworkACL(ctx context.Context, project string, name string, acl api.NetworkACLPut, etag string) error
@@ -39,7 +39,7 @@ type Provider interface {
 	ListNetworkACLsAllProjects(ctx context.Context) ([]api.NetworkACL, error)
 
 	// Network load balancers live on a tenant network and are named by their listen address, the VIP
-	// (https://github.com/OpenViCloud/titan/blob/main/docs/features/load-balancer/design.md#lb-resource-model). UpdateNetworkLoadBalancer replaces the writable part
+	// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/load-balancer/design.md#lb-resource-model). UpdateNetworkLoadBalancer replaces the writable part
 	// only if the ETag still matches (412 otherwise).
 	GetNetworkLoadBalancer(ctx context.Context, project string, network string, listenAddress string) (*api.NetworkLoadBalancer, string, error)
 	CreateNetworkLoadBalancer(ctx context.Context, project string, network string, loadBalancer api.NetworkLoadBalancersPost) error

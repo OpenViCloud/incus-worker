@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"net/url"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
 )
 
 // The CurrentExistence values Reconcile reads.
@@ -29,7 +29,7 @@ type ReconcilableLoadBalancer struct {
 // Reconcile observes one zone's load balancers — one read per network — and reports what differs; it never acts on
 // Incus. A network Incus no longer has holds none. A failed read of a network skips that network this cycle: reading
 // it as "none" would report every one of them gone. Absent is NotFound, never Deleted
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/desired-and-current.md#existence-axis).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/desired-and-current.md#existence-axis).
 func Reconcile(ctx context.Context, cp *controlplane.Client, p provider.Provider, zoneId string, logger *slog.Logger) error {
 	var rows []ReconcilableLoadBalancer
 	if err := cp.GetJSON(ctx, "/internal/reconcile/load-balancers?zoneId="+url.QueryEscape(zoneId), &rows); err != nil {

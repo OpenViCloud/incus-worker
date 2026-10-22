@@ -10,7 +10,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
 )
 
 const Token = "test-internal-token"

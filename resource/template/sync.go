@@ -10,10 +10,10 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 // Admin-facing only, but a whole Incus error can be long.
@@ -86,7 +86,7 @@ func (h *Sync) Run(ctx context.Context, leased command.Leased, logger *slog.Logg
 }
 
 // ensureClusterArchitecture: when the image server has no VM image of the cluster's architecture, Incus pulls
-// another one without an error, and no VM can start from it (https://github.com/OpenViCloud/titan/blob/main/docs/features/catalog/design.md#template-architecture).
+// another one without an error, and no VM can start from it (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/catalog/design.md#template-architecture).
 // The image is deleted so the reconciler sees the alias absent instead of reporting it present.
 func ensureClusterArchitecture(ctx context.Context, p provider.Provider, alias string, osImageName string) error {
 	entry, err := p.GetImageAlias(ctx, alias)

@@ -11,9 +11,9 @@ import (
 
 	"github.com/lxc/incus/v7/shared/api"
 
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/testsupport"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/testsupport"
 )
 
 const (
@@ -100,7 +100,7 @@ func onlyReport(t *testing.T, cp *testsupport.ControlPlane) map[string]any {
 	return all[0]
 }
 
-// ---- the Incus shape (https://github.com/OpenViCloud/titan/blob/main/docs/features/load-balancer/design.md#lb-resource-model)
+// ---- the Incus shape (https://github.com/OpenViCloud/titan-ops/blob/main/docs/features/load-balancer/design.md#lb-resource-model)
 
 func TestEui64_IsTheAddressTheGuestOfThatMacUses(t *testing.T) {
 	got, err := Eui64(subnet, macA)

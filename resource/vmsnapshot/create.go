@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
 )
 
 // createPayload mirrors ProviderCommandQueue.EnqueueVmSnapshotCreateAsync. name is the tenant's; Incus gets Titan's.

@@ -1,6 +1,6 @@
 // Command incus-worker is Titan's only actor on Incus: it leases provider commands from the control plane, runs them
 // against the zone's cluster, reports back, and runs the reconcilers
-// (https://github.com/OpenViCloud/titan/blob/main/docs/architecture/provider-and-worker.md#go-worker).
+// (https://github.com/OpenViCloud/titan-ops/blob/main/docs/architecture/provider-and-worker.md#go-worker).
 package main
 
 import (
@@ -15,19 +15,19 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/OpenViCloud/incus-worker/controlplane"
-	"github.com/OpenViCloud/incus-worker/incus/cluster"
-	"github.com/OpenViCloud/incus-worker/incus/provider"
-	"github.com/OpenViCloud/incus-worker/loop/command"
-	"github.com/OpenViCloud/incus-worker/loop/reconcile"
-	"github.com/OpenViCloud/incus-worker/resource/firewall"
-	"github.com/OpenViCloud/incus-worker/resource/loadbalancer"
-	"github.com/OpenViCloud/incus-worker/resource/network"
-	"github.com/OpenViCloud/incus-worker/resource/template"
-	"github.com/OpenViCloud/incus-worker/resource/vm"
-	"github.com/OpenViCloud/incus-worker/resource/vmsnapshot"
-	"github.com/OpenViCloud/incus-worker/resource/volsnapshot"
-	"github.com/OpenViCloud/incus-worker/resource/volume"
+	"github.com/OpenViCloud/titan-incus-worker/controlplane"
+	"github.com/OpenViCloud/titan-incus-worker/incus/cluster"
+	"github.com/OpenViCloud/titan-incus-worker/incus/provider"
+	"github.com/OpenViCloud/titan-incus-worker/loop/command"
+	"github.com/OpenViCloud/titan-incus-worker/loop/reconcile"
+	"github.com/OpenViCloud/titan-incus-worker/resource/firewall"
+	"github.com/OpenViCloud/titan-incus-worker/resource/loadbalancer"
+	"github.com/OpenViCloud/titan-incus-worker/resource/network"
+	"github.com/OpenViCloud/titan-incus-worker/resource/template"
+	"github.com/OpenViCloud/titan-incus-worker/resource/vm"
+	"github.com/OpenViCloud/titan-incus-worker/resource/vmsnapshot"
+	"github.com/OpenViCloud/titan-incus-worker/resource/volsnapshot"
+	"github.com/OpenViCloud/titan-incus-worker/resource/volume"
 )
 
 // The longest one run of a kind may take. An operation that never ends must not hold the worker,

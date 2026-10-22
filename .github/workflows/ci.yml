@@ -43,8 +43,7 @@ jobs:
 
   # Built on every run beside the tests, its layers kept in the Actions cache. Pushed only from main, once the tests
   # passed, by the push job reading those layers back, tagged with the full commit sha. The source label links the
-  # package to this repository. The old name incus-worker keeps dev's scripts/pull-images.py working until dev reads
-  # titan-incus-worker.
+  # package to this repository.
   image:
     name: Image build
     runs-on: ubuntu-latest
@@ -97,8 +96,6 @@ jobs:
           context: .
           platforms: linux/arm64
           push: true
-          tags: |
-            ghcr.io/openvicloud/titan-incus-worker:${{ github.sha }}
-            ghcr.io/openvicloud/incus-worker:${{ github.sha }}
+          tags: ghcr.io/openvicloud/titan-incus-worker:${{ github.sha }}
           labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           cache-from: type=gha,scope=titan-incus-worker
